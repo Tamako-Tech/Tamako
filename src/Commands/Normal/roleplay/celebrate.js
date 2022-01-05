@@ -3,9 +3,9 @@ const fetch = require('node-fetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
-    name: 'baka',
+    name: 'celebrate',
     aliases: [],
-    description: 'It\'s not like I want you to use my command.. ~Baka!',
+    description: 'Celebrates',
     ownerOnly: false,
     cooldown: 3000,
     userPermissions: ['SEND_MESSAGES'],
@@ -13,26 +13,26 @@ module.exports = {
     category: 'Roleplay',
     usage: '[user]',
     run: async (client, message, [ user ], Discord) => {
+
+        user = user || message.author.id;
+        if (!validate(user, message)) return message.reply('Please provide a valid user.');
+        user = parse(user, message);
+        
         try {
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=kiss`)
+            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=celebrate`)
                 .then(res => res.json())
                 .catch(() => {});
 
             const embed = new Discord.MessageEmbed()
-                .setColor('GREY')
+                .setColor('#8cff1f')
                 .setImage(data.url)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
-            
-            if (!user) return message.reply({ embeds: [embed] });
-            if (!validate(user, message)) return message.reply('Please provide a valid user.');
-            user = parse(user, message);
-            
-            if (user.id === client.user.id) return message.react('💢');
-            if (user.id === message.author.id) return message.reply(`\\❌ No **${message.author.tag}**, you're not Baka!`);
 
-            return message.reply({ embeds: [ embed.setDescription(`${user} B~baka!`) ] });
+            if (user.id === client.user.id) return message.reply({ embeds: [embed.setDescription(`${message.author}, I don't know why we celebrating but AYEEE!`)] });
 
-        } catch(err) {
+            return message.reply({ embeds: [embed.setDescription(`_${message.author} celebrates${message.author.id !== user.id ? ` with **${user}**` : ''}._`)] });
+
+        } catch (err) {
             return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
                 new Discord.MessageEmbed()
                     .setColor('RED')
