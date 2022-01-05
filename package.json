@@ -1,0 +1,30 @@
+{
+  "name": "tamako",
+  "version": "3.0.0",
+  "description": "A multipurpose feature rich discord bot",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BearTS/Tamako.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discord-js-v13",
+    "tamako-bot",
+    "tamako"
+  ],
+  "author": "BearTS",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/BearTS/Tamako/issues"
+  },
+  "homepage": "https://github.com/BearTS/Tamako#readme"
+}
