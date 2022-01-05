@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 
 module.exports = {
     name: 'dance',
@@ -12,14 +12,12 @@ module.exports = {
     usage: '',
     run: async (client, message, args, Discord) => {
         try {
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=dance`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=dance`);
 
             const embed = new Discord.MessageEmbed()
                 .setColor('#00c6cc')
                 .setDescription(`_${message.author} started dancing._`)
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
     
             return message.reply({ embeds: [embed] });

@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -22,14 +22,12 @@ module.exports = {
             if (user.id === message.author.id) return message.reply(`\\❌ I'd happily oblige! But i think you need a mental check-up **${message.author.tag}**!`);
             if (user.id === client.user.id) return message.reply(['Ouch! How dare you punch me!','Stop that!','It hurts!'][Math.floor(Math.random() * 3)]);
 
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=punch`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=punch`);
             
             const embed = new Discord.MessageEmbed()
                 .setColor('RANDOM')
                 .setDescription(`_${message.member} punches ${user}._`)
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
             return message.reply({ embeds: [embed] });

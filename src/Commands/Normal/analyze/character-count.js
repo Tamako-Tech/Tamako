@@ -1,28 +1,26 @@
-const request = require('node-superfetch');
-
 module.exports = {
-    name: 'cry',
-    aliases: [],
-    description: 'cry',
+    name: 'character-count',
+    aliases: ['characters', 'chars', 'length', 'char-count'],
+    description: 'Responds with the character count of text.',
     ownerOnly: false,
-    cooldown: 3000,
+    cooldown: 0,
     userPermissions: ['SEND_MESSAGES'],
     clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
-    category: 'Roleplay',
-    usage: '',
-    run: async (client, message, args, Discord) => {
-        try {
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=cry`);
+    category: 'Analyzers',
+    usage: '[text]',
+    run: async (client, message, [ ...text ], Discord) => {   
+        
+        if (!text) return message.reply('Please provide text.');
+        text = text.join(' ');
+        const embed = new Discord.MessageEmbed()
+            .setColor('GREY')
+            .setDescription(`${text} has ${text.length} characters.`)
+            .setFooter({ text: `Analyze Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
-            const embed = new Discord.MessageEmbed()
-                .setColor('#d0d0e3')
-                .setDescription(`_${message.author} started crying._`)
-                .setImage(data.body.url)
-                .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
-    
+        try {
             return message.reply({ embeds: [embed] });
 
-        } catch (err) {
+        } catch(err) {
             return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
                 new Discord.MessageEmbed()
                     .setColor('RED')
@@ -30,10 +28,8 @@ module.exports = {
                     .setDescription(`\`${err}\``)
                     .setFooter({ text: `Error Occured | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) })]
             });
-
         }
-    }
-
+    }   
 };
 
 /**

@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -21,14 +21,12 @@ module.exports = {
         try {
             if (user.id === client.user.id) return message.reply('Baka! You cannot explode me.');
 
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=explode`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=explode`);
 
             const embed = new Discord.MessageEmbed()
                 .setColor('#8B1E1E')
                 .setDescription(`_${message.author} ${message.author.id !== user.id ? ` exploded ${user}` : ' casts explosion'}._`)
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
             return message.reply({ embeds: [embed] });

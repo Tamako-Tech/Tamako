@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -19,14 +19,12 @@ module.exports = {
         user = parse(user, message);
         
         try {
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=smile`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=smile`);
             
             const embed = new Discord.MessageEmbed()
                 .setColor('#FF5A51')
                 .setDescription(`_${message.author} smiles${user.id !== message.author.id ? ` at ${user}` : ''}._`)
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             
             if (user.id === client.user.id) return message.reply({ embeds: [embed.setDescription(`${message.author},_smiles back_`)] });
