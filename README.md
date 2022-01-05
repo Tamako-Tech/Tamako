@@ -4,6 +4,8 @@
 
 Read the full license <a href="https://github.com/BearTS/Tamako/blob/main/LICENSE.md">here</a>
 
+Rewrite for Tamako that will be written on the freshly released of djs is just around the corner
+
 ---
 
 <h1 align="center"> <img src='https://raw.githubusercontent.com/Tamako-Tech/Tamako-Docs/main/static/img/logo.png' height='50'>Tamako</h1>
@@ -36,8 +38,32 @@ Read the full license <a href="https://github.com/BearTS/Tamako/blob/main/LICENS
 
 ---
 
+[Click here to Invite me](https://discord.com/api/oauth2/authorize?client_id=721100913611112470&permissions=1644972474359&scope=bot%20applications.commands)
+
+### Why you should invite Tamako
+Tamako is the only bot you will ever need
+From custom Welcome & Goodbye message to server stats to XP system and much more.
+
+With Tamako, 
+- You can easily moderate your server with the help of Tamako She has got you covered
+- Tamako has a Ticket Support System to help your server members directly talk with support team on your server. She can even archive those tickets and give you a copy
+- Tamako can play Music and even different sounds from the SoundBoard
+- Tamako has multiple shards to reduce the response time and provide you with the output as soon as possible.
+
+
 Check the docs at <a href="https://tamako.tech/">Tamako Tech</a>
 
 Tamako is now open source and this is a rewrite of Code of Tamako and This repository will NOT INCLUDE all the features 
 that are present in Tamako Bot.
 
+
+
+## Contribution
+Create a fork, make changes there and make a pull requrest.
+If you love this work and wish to contribute in another manner, please do join our support server (which isn't much) and ping/mention Bear#3437 there.
+
+## Credits
+
+
+## Disclaimer
+Tamako's developer is not, in any way, affiliated with Tamako Kitashirakawa's creator, nor the production team that brought the anime together, and is not, in any way, benefit financially from the sales the series produces.
