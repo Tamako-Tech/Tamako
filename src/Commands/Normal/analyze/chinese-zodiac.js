@@ -1,28 +1,28 @@
-const request = require('node-superfetch');
+const { join } = require('path');
+const signs = require(join(__dirname, '../../../assets/json/chinese-zodiac'));
 
 module.exports = {
-    name: 'cry',
-    aliases: [],
-    description: 'cry',
+    name: 'chinese-zodiac',
+    aliases: ['chinese-zodiac-sign'],
+    description: 'Responds with the Chinese Zodiac Sign for the given year.',
     ownerOnly: false,
-    cooldown: 3000,
+    cooldown: 0,
     userPermissions: ['SEND_MESSAGES'],
     clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
-    category: 'Roleplay',
-    usage: '',
-    run: async (client, message, args, Discord) => {
+    category: 'Analyzers',
+    usage: '[year]',
+    run: async (client, message, [ year ], Discord) => {   
+        if ( year < 1 ) return message.reply('Please provide a valid year.');
+        
         try {
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=cry`);
-
             const embed = new Discord.MessageEmbed()
-                .setColor('#d0d0e3')
-                .setDescription(`_${message.author} started crying._`)
-                .setImage(data.body.url)
-                .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
-    
+                .setColor('GREY')
+                .setDescription(`The Chinese Zodiac Sign for ${year} is ${signs[year % signs.length]}`)
+                .setFooter({ text: `Analyze Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
+
             return message.reply({ embeds: [embed] });
 
-        } catch (err) {
+        } catch(err) {
             return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
                 new Discord.MessageEmbed()
                     .setColor('RED')
@@ -30,10 +30,8 @@ module.exports = {
                     .setDescription(`\`${err}\``)
                     .setFooter({ text: `Error Occured | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) })]
             });
-
         }
-    }
-
+    }   
 };
 
 /**

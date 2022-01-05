@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -23,13 +23,11 @@ module.exports = {
             if (user.id === client.user.id) return message.reply(`_Baka!_ You cannot inhale me, ${message.author}.`);
             if (user.id === message.author.id) return message.reply(`_Baka!_ You cannot inhale yourself, ${message.author}.`);
             
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=inhale`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=inhale`);
 
             const embed = new Discord.MessageEmbed()
                 .setColor('#FF5A51')
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setDescription(`${message.author} inhales ${user} but got no ability`)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 

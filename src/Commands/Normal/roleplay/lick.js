@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -21,26 +21,24 @@ module.exports = {
         try {
             if (user.id === message.author.id) return message.reply(`${message.author}, ever heard of a mirror?`);
             if (user.id === client.user.id) { 
-                const data = await fetch(`${process.env.API_URL}/api/roleplay?type=disgust`)
+                const data = await request.get(`${process.env.API_URL}/api/roleplay?type=disgust`)
                     .then(res => res.json())
                     .catch(() => {});
 
                 const embed = new Discord.MessageEmbed()
                     .setColor('#FFB6C1')
-                    .setImage(data.url)
+                    .setImage(data.body.url)
                     .setDescription(`${message.author}, you disgust me!`)
                     .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
                 return message.reply({ embeds: [embed] });
             }
 
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=lick`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=lick`);
                 
             const embed = new Discord.MessageEmbed()
                 .setColor('#FFB6C1')
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setDescription(`${message.author} just licked ${user}!`)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 

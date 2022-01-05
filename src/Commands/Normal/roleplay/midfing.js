@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -21,13 +21,13 @@ module.exports = {
 
             if (user.id === message.author.id) return message.reply(`${message.author}, why are you showing middle finger to yourself? NANI?!`);
             if (user.id === client.user.id) { 
-                const data = await fetch(`${process.env.API_URL}/api/roleplay?type=baka`)
+                const data = await request.get(`${process.env.API_URL}/api/roleplay?type=baka`)
                     .then(res => res.json())
                     .catch(() => {});
 
                 const embed = new Discord.MessageEmbed()
                     .setColor('#FFB6C1')
-                    .setImage(data.url)
+                    .setImage(data.body.url)
                     .setDescription(`${message.author}`)
                     .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
     
@@ -35,13 +35,11 @@ module.exports = {
                 return message.reply({ embeds: [embed] });
             }
 
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=midfing`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=midfing`);
     
             const embed = new Discord.MessageEmbed()
                 .setColor('#FFB6C1')
-                .setImage(data.url)
+                .setImage(data.body.url)
                 .setDescription(`${message.author}: "Hey ${user}!"`)
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 

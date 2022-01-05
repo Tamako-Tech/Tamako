@@ -1,5 +1,5 @@
 const { join } = require('path');
-const fetch = require('node-fetch');
+const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '../../../Functions/types/user'));
 
 module.exports = {
@@ -25,22 +25,19 @@ module.exports = {
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
             if (user.id === client.user.id) {
-                const data = await fetch(`${process.env.API_URL}/api/roleplay?type=blush`)
-                    .then(res => res.json())
-                    .catch(() => {});
+                const data = await request.get(`${process.env.API_URL}/api/roleplay?type=blush`);
+
                 return message.reply({ embeds: [
                     embed
                         .setColor('#FFB6C1')
-                        .setImage(data.url)
+                        .setImage(data.body.url)
                         .setDescription(`_${message.author} holds my hands~_ E~Echi~`)]
                 });
             }
             
-            const data = await fetch(`${process.env.API_URL}/api/roleplay?type=holdhands`)
-                .then(res => res.json())
-                .catch(() => {});
+            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=holdhands`);
           
-            return message.reply({ embeds: [embed.setImage(data.url)] });
+            return message.reply({ embeds: [embed.setImage(data.body.url)] });
 
         } catch(err) {
             return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
