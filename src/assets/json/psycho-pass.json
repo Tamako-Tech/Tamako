@@ -1,0 +1,5 @@
+{
+	"under100": "Suspect is not a target for enforcement action. The trigger of the Dominator will be locked.",
+	"between": "Suspect is classified as a latent criminal and is a target for enforcement action. Dominator is set to Non-Lethal Paralyzer mode.",
+	"over300": "Suspect poses a serious threat to society. Lethal force is authorized. The Dominator will automatically switch to Lethal Eliminator."
+}
