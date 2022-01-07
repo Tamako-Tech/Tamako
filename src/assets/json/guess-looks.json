@@ -1,0 +1,36 @@
+{
+	"eyeColors": [
+		"blue",
+		"brown",
+		"hazel",
+		"green",
+		"yellow"
+	],
+	"hairColors": [
+		"blonde",
+		"brown",
+		"red",
+		"black",
+		"grey",
+		"white",
+		"blue"
+	],
+	"hairStyles": [
+		"curly",
+		"straight",
+		"wavy",
+		"long",
+		"shoulder-length",
+		"short",
+		"balding"
+	],
+	"extras": [
+		"freckles",
+		"glasses",
+		"dimples",
+		"contacts",
+		"loads of acne",
+		"pretty smile",
+		"braces"
+	]
+}
