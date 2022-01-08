@@ -13,7 +13,7 @@ module.exports = {
     category: 'Edit-Image',
     usage: '[name of the person]',
     run: async (client, message, [ name ], Discord) => {
-        name = message.author.username;
+        name = name || message.author.username;
         await message.reply('Give a reason for the award');
           
         const msg_filter = (m) => m.author.id === message.author.id;
