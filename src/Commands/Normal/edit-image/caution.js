@@ -27,7 +27,7 @@ module.exports = {
             let fontSize = 60;
             while (ctx.measureText(text).width > 3311) {
                 fontSize--;
-                ctx.font = `${fontSize} Noto Bold`;
+                ctx.font = `${fontSize}px Noto Bold`;
             }
             const lines = await wrapText(ctx, text.toUpperCase(), 895);
             const topMost = 470 - (((fontSize * lines.length) / 2) + ((20 * (lines.length - 1)) / 2));
