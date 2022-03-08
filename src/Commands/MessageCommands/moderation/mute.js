@@ -1,6 +1,6 @@
 const { join } = require('path');
 const ms = require('ms');
-const { validate } = require(join(__dirname, '../../../Functions/types/user'));
+const { validate } = require(join(__dirname, '..', '..', '..', 'Utils', 'types', 'user.js'));
 
 module.exports = {
     name: 'mute',
