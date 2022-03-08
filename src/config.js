@@ -1,11 +1,6 @@
-require('dotenv').config();
-
 module.exports = {
-    // Can have multiple prefixes
-    prefix: [process.env.PREFIX],
-    // developer IDs
-    developers: ['397338324328775680'],
-    token: process.env.DISCORD_TOKEN,
+    prefix: ['>'],
+    developers: ['397338324328775680']
 };
 
 /**

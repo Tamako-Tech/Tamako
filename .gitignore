@@ -4,4 +4,5 @@ node_modules
 .idea
 package-lock.json
 .yarnrc.yml
+json.sqlite
 yarn.lock

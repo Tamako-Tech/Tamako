@@ -1,9 +1,10 @@
-const { join } = require('path');
-const config = require(join(__dirname, 'config.js'));
+require('dotenv').config();
 const Discord = require('discord.js');
+const { join } = require('path');
+const config = require(join(__dirname, 'Config.js'));
+const Handler = require(join(__dirname, 'Structures', 'Handlers', 'Handler.js'));
 
 (async () => {
-    // require(join(__dirname, 'fonts'));
     const client = new Discord.Client({
         intents: [
             Discord.Intents.FLAGS.GUILDS,
@@ -16,21 +17,29 @@ const Discord = require('discord.js');
             Discord.Intents.FLAGS.GUILD_WEBHOOKS,
             Discord.Intents.FLAGS.GUILD_VOICE_STATES,
             Discord.Intents.FLAGS.GUILD_INVITES,
-            Discord.Intents.FLAGS.GUILD_BANS,
+            Discord.Intents.FLAGS.GUILD_BANS
         ],
         partials: ['CHANNEL']
     });
     
     exports.client = client;
-    client.commands = new Discord.Collection();
-    client.commands.normal = new Discord.Collection();
+    exports.config = config;
+    client.commands = {};
     client.events = new Discord.Collection();
-    client.commands.normal.aliases = new Discord.Collection();
-
-    const Handler = require(join(__dirname, 'Classes/Handlers/Handler'));
-    await Handler.loadCommands(client);
+    client.commands.messageCommands = new Discord.Collection();
+    client.commands.messageCommands.aliases = new Discord.Collection();
+    client.commands.contextMenus = new Discord.Collection();
+    client.commands.slashCommands = new Discord.Collection();
+    client.commands.buttonCommands = new Discord.Collection();
+    client.commands.selectMenus = new Discord.Collection();
+    
+    await Handler.loadMessageCommands(client);
     await Handler.loadEvents(client);
-    await client.login(config.token);
+    await client.login(process.env.TOKEN);
+    await Handler.loadSlashCommands(client);
+    await Handler.loadContextMenus(client);
+    await Handler.loadButtonCommands(client);
+    await Handler.loadSelectMenus(client);
 })();
 
 /**
