@@ -1,8 +1,10 @@
 const { join } = require('path');
+const chatbot = require(join(__dirname, '..', 'Utils', 'chatbot.js'));
 
 module.exports = {
     name: 'messageCreate',
     run: async(message, client, container) => {
+        chatbot(client, message, container);
         const loadCommandOptions = require(join(__dirname, '..', 'Structures', 'CommandOptions', 'loadCommandOptions'));
         container.Config.prefix.forEach(prefix => {
             if (!message.content.toLowerCase().startsWith(prefix)) return;
