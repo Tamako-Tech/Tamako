@@ -103,6 +103,24 @@ function trimArray(arr, maxLen = 10) {
     return arr;
 }
 
+function timeZoneConvert (data) {
+    var months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let date1 = new Date(data);
+    let date = date1.getDate();
+    let year = date1.getFullYear();
+    let month = months[date1.getMonth() + 1];
+    let h = date1.getHours();
+    let m = date1.getMinutes();
+    let ampm = 'AM';
+    if(m < 10) {
+        m = '0' + m;
+    }
+    if(h > 12) {
+        h = h - 12;
+        let ampm = 'PM';
+    }
+    return month + ' ' + date + ', ' + year + ' ' + h + ':' + m + ' ' + ampm;
+}
 
 module.exports = {
     list,
@@ -117,5 +135,6 @@ module.exports = {
     embedURL,
     percentColor,
     cleanAnilistHTML,
-    trimArray
+    trimArray,
+    timeZoneConvert
 };

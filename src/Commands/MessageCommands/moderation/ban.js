@@ -1,5 +1,5 @@
 const { join } = require('path');
-const { validate } = require(join(__dirname, '../../../Functions/types/user'));
+const { validate } = require(join(__dirname, '..', '..', '..', 'Utils', 'types', 'user.js'));
 
 module.exports = {
     name: 'ban',
