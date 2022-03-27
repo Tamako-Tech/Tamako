@@ -25,7 +25,7 @@ module.exports = {
                 .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
             if (user.id === client.user.id) {
-                const data = await request.get(`${process.env.API_URL}/api/roleplay?type=blush`);
+                const data = await request.get(`${process.env.API_URL}/api/roleplay/blush`);
 
                 return message.reply({ embeds: [
                     embed
@@ -35,12 +35,12 @@ module.exports = {
                 });
             }
             
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=holdhands`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/holdhands`);
           
             return message.reply({ embeds: [embed.setImage(data.body.url)] });
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

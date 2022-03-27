@@ -21,7 +21,7 @@ module.exports = {
         try {
             if (user.id === message.author.id) return message.reply(`${message.author}, ever heard of a mirror?`);
 
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=kiss`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/kiss`);
                 
             const embed = new container.Discord.MessageEmbed()
                 .setColor('#FFB6C1')
@@ -32,7 +32,7 @@ module.exports = {
             return message.reply({ embeds: [embed] });
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

@@ -20,7 +20,7 @@ module.exports = {
         try {
             if (user.id === client.user.id) return message.reply(`${message.author}, I am awake`);
 
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=wakeup`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/wakeup`);
             
             
             const embed = new container.Discord.MessageEmbed()
@@ -34,7 +34,7 @@ module.exports = {
 
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

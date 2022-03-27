@@ -31,7 +31,7 @@ module.exports = {
                 .setFooter({ text: `Avatar manipulation | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ files: [{ attachment: body, name: 'rip.png' }], embeds: [embed] });
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

@@ -8,6 +8,9 @@ module.exports = async function(client) {
             if (fs.statSync(file).isDirectory()) return;
             const command = require(file);
             if (command.ignoreFile) return;
+            if (command.dbRequired && !client.dbConnected) return console.log(`[] Couldn't load command ${command.name} because the database is not connected.`);          
+            command.location = file;
+            if (client.commands.messageCommands.has(command.name)) return console.log(`[] Couldn't load command ${command.name} because it already exists. ${file} `);
             client.commands.messageCommands.set(command.name.toLowerCase(), command);
             if (command.aliases) command.aliases.forEach(alias => client.commands.messageCommands.aliases.set(alias.toLowerCase(), command.name.toLowerCase()));
         });

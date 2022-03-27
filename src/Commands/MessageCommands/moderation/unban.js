@@ -19,7 +19,7 @@ module.exports = {
                 .then(user => message.reply(`\\✔️ Successfully unbanned **${user.tag}**!`))
                 .catch(() => message.reply(`\\❌ Unable to unban user with ID ${user}. The provided argument maybe not a valid user id, or the user is not banned.`));
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

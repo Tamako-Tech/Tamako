@@ -3,9 +3,9 @@ const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '..', '..', '..', 'Utils', 'types', 'user.js'));
 
 module.exports = {
-    name: 'pat',
-    aliases: ['headpat'],
-    description: 'Pat someone',
+    name: 'poke',
+    aliases: [],
+    description: 'Poke Your Friends',
     ownerOnly: false,
     cooldown: 3000,
     userPermissions: ['SEND_MESSAGES'],
@@ -21,7 +21,7 @@ module.exports = {
         try {
             if (user.id === message.author.id) return message.reply(`\\❌ No ${message.author} You cannot poke yourself!`);
             
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=poke`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/poke`);
 
             const embed = new container.Discord.MessageEmbed()
                 .setColor('#FF5A51')
@@ -35,7 +35,7 @@ module.exports = {
 
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

@@ -21,7 +21,7 @@ module.exports = {
         try {
             if (user.id === message.author.id) return message.reply(`${message.author}, ever heard of a mirror?`);
             if (user.id === client.user.id) { 
-                const data = await request.get(`${process.env.API_URL}/api/roleplay?type=disgust`)
+                const data = await request.get(`${process.env.API_URL}/api/roleplay/disgust`)
                     .then(res => res.json())
                     .catch(() => {});
 
@@ -34,7 +34,7 @@ module.exports = {
                 return message.reply({ embeds: [embed] });
             }
 
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=lick`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/lick`);
                 
             const embed = new container.Discord.MessageEmbed()
                 .setColor('#FFB6C1')
@@ -45,7 +45,7 @@ module.exports = {
             return message.reply({ embeds: [embed] });
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

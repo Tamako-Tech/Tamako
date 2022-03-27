@@ -28,7 +28,7 @@ module.exports = {
             if (user.id === message.author.id) pronoun = 'You';
             return message.reply(`${pronoun} are thi${'c'.repeat(clientAuthor ? length + 1 : length)}`);
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')
