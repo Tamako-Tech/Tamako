@@ -4,15 +4,15 @@ const { decode: decodeHTML } = require('html-entities');
 const { embedURL } = require(join(__dirname, '..', '..', '..', 'Utils', 'utilities.js'));
 
 module.exports = {
-    name: 'days-until',
+    name: 'doomsday-clock',
     aliases: [],
-    description: 'Responds with how many days there are until a certain date.',
+    description: 'Responds with the current time of the Doomsday Clock.',
     ownerOnly: false,
     cooldown: 0,
     userPermissions: ['SEND_MESSAGES'],
     clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     category: 'Events',
-    usage: '[month] [day] [year]',
+    usage: '',
     run: async(client, message, args, container) => {
         try {
             const { text } = await request.get('https://thebulletin.org/doomsday-clock/past-statements/');
@@ -30,7 +30,7 @@ module.exports = {
 
             return message.reply({ embeds: [embed] });
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

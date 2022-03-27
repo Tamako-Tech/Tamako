@@ -23,7 +23,7 @@ module.exports = {
             if (user.id === client.user.id) return message.reply(`_Baka!_ You cannot inhale me, ${message.author}.`);
             if (user.id === message.author.id) return message.reply(`_Baka!_ You cannot inhale yourself, ${message.author}.`);
             
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=inhale`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/inhale`);
 
             const embed = new container.Discord.MessageEmbed()
                 .setColor('#FF5A51')
@@ -35,7 +35,7 @@ module.exports = {
 
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

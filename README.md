@@ -2,7 +2,7 @@
 ## License
 <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a> along with Common Clause
 
-Read the full license <a href="https://github.com/BearTS/Tamako/blob/main/LICENSE.md">here</a>
+Read the full license <a href="https://github.com/Tamako-Tech/Tamako/blob/main/LICENSE.md">here</a>
 
 Rewrite for Tamako that will be written on the freshly released of djs is just around the corner
 
@@ -62,7 +62,13 @@ that are present in Tamako Bot.
 Create a fork, make changes there and make a pull requrest.
 If you love this work and wish to contribute in another manner, please do join our support server (which isn't much) and ping/mention Bear#3437 there.
 
-## Credits
+## Honourable Mentions
+- Sakurajimai#6742 [maisans-maid](https://github.com/maisans-maid)<br/>
+  Checkout [Mai Bot](https://github.com/maisans-maid/Mai)
+- [RileCraft](https://github.com/RileCraft/DiscordBot-Template/)<br/>
+  Heavily modified structure from his [Repo](https://github.com/RileCraft/DiscordBot-Template/)
+- Axel [kakarot-dev](https://github.com/kakarot-dev)<br/>
+  For Helping me with debugging
 
 
 ## Disclaimer

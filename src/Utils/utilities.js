@@ -122,12 +122,36 @@ function timeZoneConvert (data) {
     return month + ' ' + date + ', ' + year + ' ' + h + ':' + m + ' ' + ampm;
 }
 
+function commatize(number, maximumFractionDigits = 2){
+    return Number(number || '')
+        .toLocaleString('en-US', { maximumFractionDigits });
+}
+
+function compactNum(number, maximumFractionDigits = 2){
+    return Number(number || '')
+        .toLocaleString('en-US', {
+            notation: 'compact', maximumFractionDigits
+        });
+}
+
+function ordinalize(n = 0){
+    return Number(n)+[,'st','nd','rd'][n/10%10^1&&n%10]||Number(n)+'th';
+}
+function textTruncate(str = '', length = 100, end = '...'){
+    return String(str).substring(0, length - end.length) + (str.length > length ? end : '');
+}
+
+function truncate(...options){
+    return textTruncate(...options);
+};
+
 module.exports = {
     list,
     firstUpperCase,
     rgbToHex,
     base64,
     shorten,
+    compactNum,
     formatNumber,
     today,
     tomorrow,
@@ -136,5 +160,8 @@ module.exports = {
     percentColor,
     cleanAnilistHTML,
     trimArray,
-    timeZoneConvert
+    timeZoneConvert,
+    commatize,
+    ordinalize,
+    truncate
 };

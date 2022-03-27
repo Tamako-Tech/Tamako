@@ -1,10 +1,10 @@
 const chalk = require('chalk');
 const Box = require('cli-box');
-
 module.exports = {
     name: 'ready',
     once: true,
     run: async(client) => {
+        await client.guildProfiles.load();
         client.user.setActivity('Cookies get baked.', {
             type: 'WATCHING',
         });
@@ -59,5 +59,6 @@ Client Events              ::    Initiating ${client.events.size} events.
 
         console.log(chalk.bold.greenBright(ClientBox));
         console.log(chalk.bold.blueBright(CommandsBox));
+        // client.erela.init(client.user.id);
     }
 };

@@ -3,7 +3,7 @@ const { MersenneTwister19937, bool } = require('random-js');
 const { validate, parse } = require(join(__dirname, '..', '..', '..', 'Utils', 'types', 'user.js'));
 
 module.exports = {
-    name: 'friendship-meter',
+    name: 'smash-or-pass',
     aliases: ['pass-or-smash', 'smash-pass', 'pass-smash'],
     description: 'Determines if a user is worthy of a smash or a pass.',
     ownerOnly: false,
@@ -26,7 +26,7 @@ module.exports = {
             const smashOrPass = bool()(random);
             return message.reply(smashOrPass ? ' I\'d definitely smash.' : 'Hard pass. Yuck. Eww');
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

@@ -4,9 +4,9 @@ const { validate, parse } = require(join(__dirname, '..', '..', '..', 'Utils', '
 const { embedURL } = require(join(__dirname, '..', '..', '..', 'Utils', 'utilities.js'));
 
 module.exports = {
-    name: 'time',
-    aliases: ['time-zone'],
-    description: 'Responds with the current time in a particular location.',
+    name: 'today-in-history',
+    aliases: ['today', 'history'],
+    description: 'Responds with an event that occurred today in history.',
     ownerOnly: false,
     cooldown: 0,
     userPermissions: ['SEND_MESSAGES'],
@@ -34,7 +34,7 @@ module.exports = {
             return message.reply({ embeds: [embed] });
         } catch(err) {
             if (err.status === 404 || err.status === 500) return message.reply('Invalid date.');
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

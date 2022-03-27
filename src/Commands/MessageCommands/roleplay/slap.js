@@ -22,7 +22,7 @@ module.exports = {
             if (user.id === message.author.id) return message.reply(`\\❌ I'd happily oblige! But i think you need a mental check-up **${message.author.tag}**!`);
             if (user.id === client.user.id) return message.reply(['Ouch! How dare you punch me!','Stop that!','It hurts!'][Math.floor(Math.random() * 3)]);
 
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=slap`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/slap`);
             
             const embed = new container.Discord.MessageEmbed()
                 .setColor('RANDOM')
@@ -33,7 +33,7 @@ module.exports = {
             return message.reply({ embeds: [embed] });
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

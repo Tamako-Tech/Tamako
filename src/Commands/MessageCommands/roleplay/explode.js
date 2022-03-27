@@ -21,7 +21,7 @@ module.exports = {
         try {
             if (user.id === client.user.id) return message.reply('Baka! You cannot explode me.');
 
-            const data = await request.get(`${process.env.API_URL}/api/roleplay?type=explode`);
+            const data = await request.get(`${process.env.API_URL}/api/roleplay/explode`);
 
             const embed = new container.Discord.MessageEmbed()
                 .setColor('#8B1E1E')
@@ -33,7 +33,7 @@ module.exports = {
 
 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')

@@ -3,9 +3,9 @@ const request = require('node-superfetch');
 const { validate, parse } = require(join(__dirname, '..', '..', '..', 'Utils', 'types', 'user.js'));
 
 module.exports = {
-    name: 'avatar-fusion',
-    aliases: ['avatar-fuse', 'ava-fuse'],
-    description: 'Draws a a user\'s avatar over a user\'s avatar.',
+    name: 'distracted-boyfriend',
+    aliases: ['man-looking-at-other-woman', 'jealous-girlfriend'],
+    description: 'Draws three user\'s avatars over the "Distracted Boyfriend" meme.',
     ownerOnly: false,
     cooldown: 2000,
     userPermissions: ['SEND_MESSAGES'],
@@ -33,7 +33,7 @@ module.exports = {
                 .setFooter({ text: `Avatar manipulation | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ files: [{ attachment: body, name: 'distracted-boyfriend.png' }], embeds: [embed] }); 
         } catch(err) {
-            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${process.env.PREFIX}feedback\` command`, embeds: [ 
+            return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
                     .setTitle('Error')
