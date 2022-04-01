@@ -33,14 +33,14 @@ module.exports = {
         }
       
         if (type === 'msg'){
-            const message = await modifier.modify(guildProfile.greeter.leaving.message, member);
+            const message = await modifier.modify(guildProfile.greeter.leaving.message, member, client);
             return client.channels.cache.get(guildProfile.greeter.leaving.channel).send(message);
         }
       
         return client.channels.cache.get(guildProfile.greeter.leaving.channel).send({
             embeds: [new container.Discord.MessageEmbed(
                 JSON.parse(
-                    await modifier.modify(JSON.stringify(guildProfile.greeter.leaving.embed), member)))]
+                    await modifier.modify(JSON.stringify(guildProfile.greeter.leaving.embed), member, client)))]
         });
     }
 };

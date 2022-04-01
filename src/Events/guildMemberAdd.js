@@ -32,7 +32,7 @@ module.exports = {
       
         //if message was text, send the text
         if (type === 'msg'){
-            const message = await modifier.modify(guildProfile.greeter.welcome.message, member);
+            const message = await modifier.modify(guildProfile.greeter.welcome.message, member, client);
             return client.channels.cache.get(guildProfile.greeter.welcome.channel).send(message);
         }
       
@@ -40,7 +40,7 @@ module.exports = {
         return client.channels.cache.get(guildProfile.greeter.welcome.channel).send({
             embeds: [new container.Discord.MessageEmbed(
                 JSON.parse(
-                    await modifier.modify(JSON.stringify(guildProfile.greeter.welcome.embed), member)))]
+                    await modifier.modify(JSON.stringify(guildProfile.greeter.welcome.embed), member, client)))]
         });
     }
 };

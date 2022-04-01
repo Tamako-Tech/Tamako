@@ -2,9 +2,8 @@
 
 const moment = require('moment');
 
-async function modify(str, member){
-
-    const owner = await member.guild.members.fetch(member.guild.ownerID);
+async function modify(str, member, client){
+    const owner = await client.users.fetch(member.guild.ownerId);
     const modifiers = {
         '{avatar}': member.user.displayAvatarURL(),
         '{avatarDynamic}': member.user.displayAvatarURL({ dynamic: true, format: 'png'}),
@@ -20,12 +19,12 @@ async function modify(str, member){
         '{guildIcon}': member.guild.iconURL(),
         '{guildIconDynamic}': member.guild.iconURL({dynamic: true, format: 'png'}),
         '{guildName}': member.guild.name,
-        '{guildOwner}':  owner.user.username,
-        '{guildOwnerNickname}': owner.displayName,
-        '{guildOwnerTag}': owner.user.tag,
-        '{guildOwnerDiscrim}': owner.user.discriminator,
-        '{guildOwnerAvatar}': owner.user.displayAvatarURL(),
-        '{guildOwnerAvatarDynamic}': owner.user.displayAvatarURL({dynamic: true, format: 'png'}),
+        '{guildOwner}': 'to do', // : owner.user.username,
+        '{guildOwnerNickname}': 'to do', //  : owner.displayName,
+        '{guildOwnerTag}': 'to do', // : owner.user.tag,
+        '{guildOwnerDiscrim}': 'to do', // : owner.user.discriminator,
+        '{guildOwnerAvatar}': 'https://cdn.discordapp.com/avatars/397338324328775680/85510ce2924e4cd583731c4b6950b796.png?size=1024', // : owner.user.displayAvatarURL(),
+        '{guildOwnerAvatarDynamic}': 'https://cdn.discordapp.com/avatars/397338324328775680/85510ce2924e4cd583731c4b6950b796.png?size=1024', // : owner.user.displayAvatarURL({dynamic: true, format: 'png'}),
         '{joinedAt}': member.joinedAt,
         '{joinedAtMDY}': moment(member.joinedAt).format('dddd, MMMM D YYYY'),
         '{memberCount}': member.guild.memberCount,
