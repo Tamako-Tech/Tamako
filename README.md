@@ -9,7 +9,7 @@ Rewrite for Tamako that will be written on the freshly released of djs is just a
 ---
 
 <h1 align="center"> <img src='https://raw.githubusercontent.com/Tamako-Tech/Tamako-Docs/main/static/img/logo.png' height='50'>Tamako</h1>
-
+<p align="center">This Project depends on <a href="https://github.com/BearTS/tamako-microservices">Microservices</a></p>
 <p align="center"> A Multipurpose Feature Rich Discord Bot </p>
 
 <p align="center">
