@@ -5,7 +5,7 @@ module.exports = {
     name: 'messageCreate',
     run: async(message, client, container) => {
         const loadCommandOptions = require(join(__dirname, '..', 'Structures', 'CommandOptions', 'loadCommandOptions'));       
-        chatbot(client, message, container);
+        await chatbot(client, message, container);
         let execute;
         container.Config.prefix.forEach(prefix => {
             if (!message.content.toLowerCase().startsWith(prefix)) return;

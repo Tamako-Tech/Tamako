@@ -13,6 +13,7 @@ module.exports = async (client, message, container) => {
     }
     const id = client.guildProfiles.get(message.guild.id).chatbotChannel;
     const channel = message.guild.channels.cache.get(id);
+    if (message.content.toLowerCase() === mentionregexp) return message.reply(`How may i help you, My prefix are are: \`${prefixs.join('`, `')}\`, the current chatbot channel is set to: ${channel || 'None'}`);
     if (!channel) return;
     if (!(message.channel.id === channel.id)) return;
     let mention = false;
