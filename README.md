@@ -56,7 +56,8 @@ Check the docs at <a href="https://tamako.tech/">Tamako Tech</a>
 Tamako is now open source and this is a rewrite of Code of Tamako and This repository will NOT INCLUDE all the features 
 that are present in Tamako Bot.
 
-
+## MacOS Setup
+- If `npm install` does not work use `brew install pkg-config cairo pango libpng jpeg giflib librsvg` first
 
 ## Contribution
 Create a fork, make changes there and make a pull requrest.
