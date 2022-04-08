@@ -18,9 +18,9 @@ module.exports = model('user_profiles', Schema({
             inventory : {type: Array , default: []                }
         },
         economy: {
-            credits: { type: Number, default: 0    },
-            bank   : { type: Number, default: 0    },
-            wallet : { type: Number, default: 0    },
+            credits: { type: Number, default: 0    }, // Not in use
+            bank   : { type: Number, default: 0    }, // potentially should be default null
+            wallet : { type: Number, default: 0    }, // potentially should be default null
             streak : {
                 alltime  : { type: Number, default: 0 },
                 current  : { type: Number, default: 0 },
