@@ -1,5 +1,4 @@
 require('dotenv').config();
-require('./fonts');
 const Cluster = require('discord-hybrid-sharding');
 const manager = new Cluster.Manager(`${__dirname}/bot.js`,{
     totalShards: 'auto' , //or 'auto'
