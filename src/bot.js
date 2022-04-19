@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('./fonts');
 const Cluster = require("discord-hybrid-sharding");
 const Discord = require('discord.js');
 const { join } = require('path');
