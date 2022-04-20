@@ -27,7 +27,7 @@ module.exports = {
             else if (coefficient > 300) res = over300;
             else res = between;
             const embed = new container.Discord.MessageEmbed()
-                .setAuthor('Ummm....')
+                .setAuthor({name: 'Ummm....'})
                 .setDescription(`${message.author.id === user.id ? 'Your' : `Suspect ${user.username}'s`} Crime Coefficient is ${coefficient}. ${res}`)
                 .setFooter({ text: `Random Seed | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ embeds: [embed] });

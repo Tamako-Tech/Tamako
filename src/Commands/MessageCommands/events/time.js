@@ -18,7 +18,7 @@ module.exports = {
         if (!moment.tz.zone(timeZone)) {
             let embed = new container.Discord.MessageEmbed()
                 .setColor('GREY')
-                .setAuthor('Baka')
+                .setAuthor({name: 'Baka'})
                 .setTitle('Invalid time zone')
                 .setDescription('Refer to [TimeZone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)')
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
@@ -34,7 +34,7 @@ module.exports = {
             const parens = sub ? ` (${subMain ? `${sub}, ` : ''}${main})` : '';
             let embed = new container.Discord.MessageEmbed()
                 .setColor('GREY')
-                .setAuthor(`Time in ${subMain || sub || main}${parens}`)
+                .setAuthor({name :`Time in ${subMain || sub || main}${parens}`})
                 .setDescription(`Current Time: ${time}`)
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 

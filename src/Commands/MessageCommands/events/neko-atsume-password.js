@@ -15,14 +15,15 @@ module.exports = {
     clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     category: 'Events',
     usage: '[locale]',
-    run: async (client, message, [ locale = 'en' ], container) => {
+    run: async (client, message, [ locale ], container) => {
+        if (!local) locale = 'en';
         locale = locale.toLowerCase();
         if (!locales.includes(locale)) return message.reply(`\`${locale}\` is not a valid locale. Avaiable locales are: \`${locales.join('`, `')}\``);
         try {
             const data = await fetchPassword(locale);
             const embed = new container.Discord.MessageEmbed()
                 .setColor('GREY')
-                .setAuthor(`Expires in ${moment.duration(data.expires - data.date).format('hh:mm:ss', { trim: false })}`)
+                .setAuthor({ name: `Expires in ${moment.duration(data.expires - data.date).format('hh:mm:ss', { trim: false })}`})
                 .setDescription(`The current Neko Atsume password is **${data.password}**.\n\n${data.gold} Gold Fish ${data.silver} Silver Fish`)
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 

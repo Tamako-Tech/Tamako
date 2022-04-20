@@ -21,7 +21,7 @@ module.exports = {
                 .set({ Authorization: `token ${process.env.GITHUB_ACCESS_TOKEN}` });
             const embed = new container.Discord.MessageEmbed()
                 .setColor(0xFFFFFF)
-                .setAuthor('GitHub', 'https://i.imgur.com/e4HunUm.png', 'https://github.com/')
+                .setAuthor({name: 'GitHub', iconURL: 'https://i.imgur.com/e4HunUm.png', url:'https://github.com/'})
                 .setTitle(body.full_name)
                 .setURL(body.html_url)
                 .setDescription(body.description ? shorten(body.description) : 'No description.')

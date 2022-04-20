@@ -11,7 +11,7 @@ const percentColors = [
 ];
 module.exports = {
     name: 'friendship-meter',
-    aliases: ['friendship-tester', 'friendship-test', 'friend-test'],
+    aliases: ['friendship-tester', 'friendship-test', 'friend-test', 'friendship'],
     description: 'Determines how good friends two users are.',
     ownerOnly: false,
     cooldown: 3000,

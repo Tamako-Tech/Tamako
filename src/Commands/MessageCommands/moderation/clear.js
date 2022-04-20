@@ -16,7 +16,7 @@ module.exports = {
         }
     
         try {
-            // to do
+            // 
             message.channel.send('In works');
         } catch(err) {
             return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
