@@ -1,44 +1,32 @@
 const { join } = require('path');
 const request = require('node-superfetch');
-const moment = require('moment');
-require('moment-duration-format');
 const { validate, parse } = require(join(__dirname, '..', '..', '..', 'Utils', 'types', 'month.js'));
+const { embedURL } = require(join(__dirname, '..', '..', '..', 'Utils', 'utilities.js'));
 
 module.exports = {
-    name: 'google-doodle',
-    aliases: [],
-    description: 'Responds with a Google Doodle, either the latest one or a random one from the past.',
+    name: 'year-progress',
+    aliases: ['year', 'year-prog', 'y-progress', 'y-prog'],
+    description: 'Responds with the progress of the current year.',
     ownerOnly: false,
     cooldown: 0,
     userPermissions: ['SEND_MESSAGES'],
     clientPermissions: ['SEND_MESSAGES', 'EMBED_LINKS'],
     category: 'Events',
-    usage: '[month] [year]',
-    run: async (client, message, [ month = 'latest', year ], container) => {
-        const now = new Date();
-        if (month) {
-            if (!validate(month)) return message.reply('Please provide a valid month.');
-            else month = parse(month);
-        }
-        if (month === 'latest') month = now.getMonth() + 1;
-        console.log(month)
-        // debugging ^
-        if (!year) year = now.getFullYear();
+    usage: '',
+    run: async (client, message, [], container) => {
         try {
-            const { body } = await request.get(`https://www.google.com/doodles/json/${year}/${month}`);
-            if (!body.length) return message.reply('Could not find any results.');
-            const data = body[month === 'latest' ? 0 : Math.floor(Math.random() * body.length)];
-            const runDate = moment.utc(data.run_date_array.join('-')).format('MMMM Do, YYYY');
-
+            const today = new Date();
+		    const start = new Date(today.getFullYear(), 0, 1);
+		    const end = new Date(today.getFullYear() + 1, 0, 1);
+		    const percent = (Math.abs(today - start) / Math.abs(end - start)) * 100;
             const embed = new container.Discord.MessageEmbed()
-                .setColor('GREY')
-                .setTitle(data.share_text)
-                .setDescription(runDate)
-                .setImage(`https:${data.url}`)
+			    .setColor(0x9797FF)
+			    .setDescription(`The year ${today.getFullYear()} is **${percent}%** complete!`)
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
             return message.reply({ embeds: [embed] });
         } catch(err) {
+            if (err.status === 404 || err.status === 500) return message.reply('Invalid date.');
             return message.reply({ content: `Let my developer know in the support server https://discord.gg/dDnmY56 or using \`${container.Config.prefix[0]}feedback\` command`, embeds: [ 
                 new container.Discord.MessageEmbed()
                     .setColor('RED')
@@ -49,6 +37,7 @@ module.exports = {
         }
     }   
 };
+
 
 /**
  * @INFO

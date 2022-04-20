@@ -43,7 +43,7 @@ module.exports = {
             const embed = new container.Discord.MessageEmbed()
                 .setColor('#94ebcd')
                 .setTitle(`${moment().tz('Asia/Tokyo').format('dddd, MMMM Do, YYYY')}`)
-                .setAuthor('Anime Airing')
+                .setAuthor({ name: 'Anime Airing' })
                 .setDescription(`${mapped.join('\n')}`)
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ embeds: [embed] });

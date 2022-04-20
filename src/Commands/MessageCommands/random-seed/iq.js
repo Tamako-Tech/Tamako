@@ -26,7 +26,7 @@ module.exports = {
             const random = MersenneTwister19937.seed(user.id);
             const score = integer(20, 170)(random);
             const embed = new container.Discord.MessageEmbed()
-                .setAuthor('Ummm....')
+                .setAuthor({name: 'Ummm....'})
                 .setDescription(`${authorUser ? 'Your' : `${user.username}'s`} IQ score is ${score}.`)
                 .setFooter({ text: `Random Seed | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ embeds: [embed] });

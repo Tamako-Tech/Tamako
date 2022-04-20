@@ -21,11 +21,7 @@ module.exports = {
                 .setTitle(body.title)
                 .setDescription(shorten(body.explanation))
                 .setColor(0x2E528E)
-                .setAuthor(
-                    'Astronomy Picture of the Day',
-                    'https://i.imgur.com/Wh8jY9c.png',
-                    'https://apod.nasa.gov/apod/astropix.html'
-                )
+                .setAuthor({name: 'Astronomy Picture of the Day', iconURL: 'https://i.imgur.com/Wh8jY9c.png', url: 'https://apod.nasa.gov/apod/astropix.html'})
                 .setImage(body.media_type === 'image' ? body.url : null)
                 .setURL(body.url)
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });

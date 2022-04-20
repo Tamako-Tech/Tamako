@@ -35,7 +35,7 @@ module.exports = {
             const weight = integer(50, 300)(random);
             const extra = extras[integer(0, extras.length - 1)(random)];
             const embed = new container.Discord.MessageEmbed()
-                .setAuthor('I think.....')
+                .setAuthor({name: 'I think.....'})
                 .setDescription(`${authorUser ? 'you are' : `${user.username} is`} a ${age} year old ${gender} with ${eyeColor} eyes\nand ${hairStyle} ${hairColor} hair. ${authorUser ? 'You are' : `${gender === 'male' ? 'He' : 'She'} is`}\n${feet}'${inches}" and weigh${authorUser ? '' : 's'} ${weight} pounds. Don't forget the ${extra}!`)
                 .setFooter({ text: `Random Seed | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ embeds: [embed] });

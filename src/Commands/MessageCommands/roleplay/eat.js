@@ -19,17 +19,19 @@ module.exports = {
         user = parse(user, message);
         
         try {
-            const data = await request.get(`${process.env.API_URL}/api/roleplay/eat`);
+            // const data = await request.get(`${process.env.API_URL}/api/roleplay/eat`);
 
-            const embed = new container.Discord.MessageEmbed()
-                .setColor('#957DAD')
-                .setDescription(`_${message.author} ${message.author.id !== user.id ? `feeds ${user}` : 'eats..'}_`)
-                .setImage(data.body.url)
-                .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
+            // const embed = new container.Discord.MessageEmbed()
+            //     .setColor('#957DAD')
+            //     .setDescription(`_${message.author} ${message.author.id !== user.id ? `feeds ${user}` : 'eats..'}_`)
+            //     .setImage(data.body.url)
+            //     .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
-            if (user.id === client.user.id) return message.reply({ embeds: [embed.setDescription(`Nom nom nom... Arigato~ ${message.author}`)] });
+            // if (user.id === client.user.id) return message.reply({ embeds: [embed.setDescription(`Nom nom nom... Arigato~ ${message.author}`)] });
 
-            return message.reply({ embeds: [embed] });
+            // return message.reply({ embeds: [embed] });
+            return message.reply('in works')
+            // waiting on tamako api
 
 
         } catch(err) {

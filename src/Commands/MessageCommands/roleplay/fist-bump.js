@@ -19,17 +19,19 @@ module.exports = {
         user = parse(user, message);
         
         try {
-            const data = await request.get(`${process.env.API_URL}/api/roleplay/fistbump`);
+            // const data = await request.get(`${process.env.API_URL}/api/roleplay/fistbump`);
 
-            const embed = new container.Discord.MessageEmbed()
-                .setColor('#8C5192')
-                .setDescription(`_${message.author} ${user.id === client.id ? 'Aye Let\'s GOOO' : `fist bumps ${user}`}_`)
-                .setImage(data.body.url)
-                .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
+            // const embed = new container.Discord.MessageEmbed()
+            //     .setColor('#8C5192')
+            //     .setDescription(`_${message.author} ${user.id === client.id ? 'Aye Let\'s GOOO' : `fist bumps ${user}`}_`)
+            //     .setImage(data.body.url)
+            //     .setFooter({ text: `Roleplay Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 
-            if (user.id === message.author.id) return message.reply({embeds: [embed.setDescription(`${message.author} H~here! Thought you needed a fist bump!`)]});
+            // if (user.id === message.author.id) return message.reply({embeds: [embed.setDescription(`${message.author} H~here! Thought you needed a fist bump!`)]});
             
-            return message.reply({ embeds: [embed] });
+            // return message.reply({ embeds: [embed] });
+            return message.reply(`in works`)
+            // waiting on tamako api
 
 
         } catch(err) {

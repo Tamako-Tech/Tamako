@@ -34,7 +34,7 @@ module.exports = {
             const embed = new container.Discord.MessageEmbed()
                 .setColor(0x3E7614)
                 .setTitle(data.title)
-                .setAuthor('Bulbapedia', 'https://i.imgur.com/ePpoeFA.png', 'https://bulbapedia.bulbagarden.net/')
+                .setAuthor({name:'Bulbapedia', iconURL:'https://i.imgur.com/ePpoeFA.png', url:'https://bulbapedia.bulbagarden.net/'})
                 .setThumbnail(data.thumbnail ? data.thumbnail.source : null)
                 .setURL(`https://bulbapedia.bulbagarden.net/wiki/${encodeURIComponent(query).replaceAll(')', '%29')}`)
                 .setDescription(shorten(data.extract.replaceAll('\n', '\n\n')))

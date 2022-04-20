@@ -24,7 +24,7 @@ module.exports = {
                 .setTitle(`${year}: ${time}`)
                 .setColor(0x000000)
                 .setURL('https://thebulletin.org/doomsday-clock/current-time/')
-                .setAuthor('Bulletin of the Atomic Scientists', undefined, 'https://thebulletin.org/')
+                .setAuthor({ name: 'Bulletin of the Atomic Scientists', iconURL: null, url: 'https://thebulletin.org/'})
                 .setDescription(decodeHTML(description))
                 .setFooter({ text: `Event Commands | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
 

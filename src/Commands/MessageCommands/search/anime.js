@@ -80,7 +80,7 @@ module.exports = {
             const malURL = `https://myanimelist.net/anime/${anime.idMal}`;
             const embed = new container.Discord.MessageEmbed()
                 .setColor(0x02A9FF)
-                .setAuthor('AniList', 'https://i.imgur.com/iUIRC7v.png', 'https://anilist.co/')
+                .setAuthor({name: 'AniList', iconURL:'https://i.imgur.com/iUIRC7v.png', url:'https://anilist.co/'})
                 .setURL(anime.siteUrl)
                 .setThumbnail(anime.coverImage.large || anime.coverImage.medium || null)
                 .setTitle(anime.title.english || anime.title.romaji)

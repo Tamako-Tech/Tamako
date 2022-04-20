@@ -81,7 +81,7 @@ module.exports = {
             const staff = await fetchStaff(id);
             const embed = new container.Discord.MessageEmbed()
                 .setColor(0x02A9FF)
-                .setAuthor('AniList', 'https://i.imgur.com/iUIRC7v.png', 'https://anilist.co/')
+                .setAuthor({name: 'AniList', iconURL: 'https://i.imgur.com/iUIRC7v.png', url: 'https://anilist.co/'})
                 .setURL(staff.siteUrl)
                 .setThumbnail(staff.image.large || staff.image.medium || null)
                 .setTitle(`${staff.name.first || ''}${staff.name.last ? ` ${staff.name.last}` : ''}`)

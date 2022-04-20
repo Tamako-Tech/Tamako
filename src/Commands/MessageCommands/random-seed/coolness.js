@@ -27,7 +27,7 @@ module.exports = {
             const random = MersenneTwister19937.seed(user.id);
             const coolness = integer(0, texts.length - 1)(random);
             const embed = new container.Discord.MessageEmbed()
-                .setAuthor('I think.....')
+                .setAuthor({name: 'I think.....'})
                 .setDescription(`${authorUser ? 'You are' : `${user.username} is`} ${texts[coolness]}`)
                 .setFooter({ text: `Random Responses | Made by Bear#3437 | ©️ ${new Date().getFullYear()} Tamako`, iconURL: client.user.displayAvatarURL({ dynamic: true }) });
             return message.reply({ embeds: [embed] });
