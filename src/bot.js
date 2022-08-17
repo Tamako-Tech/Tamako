@@ -3,7 +3,7 @@ require('./fonts');
 const Cluster = require("discord-hybrid-sharding");
 const Discord = require('discord.js');
 const { join } = require('path');
-const config = require(join(__dirname, 'config.js'));
+const config = require(join(__dirname, 'Config.js'));
 const Handler = require(join(__dirname, 'Structures', 'Handlers', 'Handler.js'));
 const GuildProfilesManager = require(join(__dirname, 'Extensions', 'guilds', 'ProfileManager.js'));
 const Anischedule  = require(join(__dirname, 'Extensions', 'Misc', 'Anischedule.js'));
