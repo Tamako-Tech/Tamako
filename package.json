@@ -35,7 +35,7 @@
     "child_process": "^1.0.2",
     "cli-box": "^6.0.10",
     "common-tags": "^1.8.2",
-    "discord-hybrid-sharding": "^1.4.6",
+    "discord-hybrid-sharding": "1.4.6",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
