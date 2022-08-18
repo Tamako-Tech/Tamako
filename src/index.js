@@ -1,17 +1,62 @@
-require('dotenv').config();
-const Cluster = require('discord-hybrid-sharding');
-const manager = new Cluster.Manager(`${__dirname}/bot.js`,{
-    totalShards: 'auto' , //or 'auto'
-    ///See below for more options
-    shardsPerClusters: 2, 
-    //totalClusters: 7,
-    keepAlive: {
-        interval: 2000, ///The Interval to send the Heartbeat
-        maxMissedHeartbeats: 5, // The maximal Amount of missing Heartbeats until Cluster will be respawned
-        maxClusterRestarts: 3 ///The maximal Amount of restarts, which can be done in 1 hour with the HeartbeatSystem
-    },
-    mode: 'process' ,  
-    token: process.env.TOKEN,
-});
-manager.on('clusterCreate', cluster => console.log(`Launched Cluster ${cluster.id}`));
-manager.spawn({timeout: -1});
+require('dotenv').config()
+const { Client, Partials, Collection, GatewayIntentBits } = require('discord.js')
+const { join } = require('path')
+const config = require(join(__dirname, 'config', 'config.json'))
+const logger = require(join(__dirname, 'handlers', 'logger'))
+
+// Creating a new client:
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildPresences,
+    GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent
+  ],
+  partials: [
+    Partials.Channel,
+    Partials.Message,
+    Partials.User,
+    Partials.GuildMember,
+    Partials.Reaction
+  ],
+  presence: {
+    activities: [{
+      name: 'with the bot',
+      type: 0
+    }],
+    status: 'dnd'
+  }
+})
+
+// Getting the bot token:
+const AuthenticationToken = process.env.TOKEN || config.Client.TOKEN
+if (!AuthenticationToken) {
+  logger.error('CRITICAL', 'No token found in config.json or environment variables')
+  process.exit()
+};
+
+// Handler:
+client.commands = new Collection()
+client.slashcmds = new Collection()
+client.events = new Collection()
+
+module.exports = client;
+
+['prefix', 'slash', 'events', 'mongoose'].forEach(file => {
+  require(`./handlers/${file}`)(client)
+})
+
+// Login to the bot:
+client.login(AuthenticationToken)
+  .catch((err) => {
+    logger.error('CRITICAL', 'Error from discord API', err)
+    process.exit()
+  })
+
+// Handle errors:
+process.on('unhandledRejection', async (err, promise) => {
+  logger.error('ANTI CRASH', 'Unhandled Rejection', err)
+  console.error(promise)
+})

@@ -1,6 +1,6 @@
 {
   "name": "tamako",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "A multipurpose feature rich discord bot",
   "main": "./src/index.js",
   "engines": {
@@ -9,58 +9,32 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint": "standard --fix ."
   },
   "repository": "git+https://github.com/Tamako-Tech/Tamako.git",
   "keywords": [
     "discord",
     "discord-bot",
-    "discord-js-v13",
+    "discord-js-v14",
     "tamako-bot",
     "tamako"
   ],
-  "author": "BearTS",
+  "author": "Anuj Parihar <anujparihar@yahoo.com>",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
     "url": "https://github.com/Tamako-Tech/Tamako/issues"
   },
   "homepage": "https://github.com/Tamako-Tech/Tamako#readme",
-  "packageManager": "yarn@3.1.1",
   "dependencies": {
-    "animequotes": "^2.0.0",
-    "canvas": "^2.9.1",
     "chalk": "^4.1.2",
-    "cheerio": "^1.0.0-rc.10",
-    "child_process": "^1.0.2",
-    "cli-box": "^6.0.10",
-    "common-tags": "^1.8.2",
-    "discord-hybrid-sharding": "1.4.6",
-    "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0",
-    "eslint": "^8.10.0",
-    "fs": "^0.0.1-security",
-    "glob": "^7.2.0",
-    "he": "^1.2.0",
-    "html-entities": "^2.3.2",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1",
-    "moment-duration-format": "^2.3.2",
-    "moment-timezone": "^0.5.34",
-    "mongoose": "^5.11.8",
-    "nekos.life": "^2.0.9",
-    "node-fetch": "^2.6.1",
-    "node-kitsu": "^1.1.1",
-    "node-superfetch": "^0.2.3",
-    "path": "^0.12.7",
-    "quick.db": "^7.1.3",
-    "random-js": "^2.1.0",
-    "require-text": "^0.0.1",
-    "shoukaku": "^2.1.5",
-    "tesseract.js": "^2.1.5",
-    "valid-url": "^1.0.9"
+    "discord-api-types": "^0.36.2",
+    "discord.js": "^14.2.0",
+    "dotenv": "^16.0.1",
+    "mongoose": "^6.4.4",
+    "ms": "^2.1.3",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
-    "eslint": "^8.6.0"
+    "standard": "^17.0.0"
   }
 }

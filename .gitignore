@@ -1,8 +1,2 @@
-.env
 node_modules
-.yarn
-.idea
-package-lock.json
-.yarnrc.yml
-json.sqlite
-yarn.lock
+.env
