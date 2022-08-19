@@ -11,6 +11,11 @@ module.exports = (client) => {
       const pull = require(join(__dirname, '..', 'commands', dir, file))
       if (pull.config.name) {
         client.commands.set(pull.config.name, pull)
+        if (pull.config.alias) {
+          pull.config.alias.forEach(alias => {
+            client.commands.alias.set(alias.toLowerCase(), pull.config.name.toLowerCase())
+          })
+        }
         logger.info(NAMESPACE, `Loaded command: ${pull.config.name}, (#${client.commands.size})`)
       } else {
         logger.error(NAMESPACE, `Command ${file} has no name!`)

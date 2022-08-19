@@ -23,7 +23,7 @@ client.on('messageCreate', async message => {
   const cmd = args.shift().toLowerCase()
   if (cmd.length === 0) return
 
-  const command = client.commands.get(cmd)
+  const command = client.commands.get(cmd) ?? client.commands.get(client.commands.alias.get(cmd))
 
   if (!command) return
 

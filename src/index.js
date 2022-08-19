@@ -4,7 +4,7 @@ const { join } = require('path')
 const config = require(join(__dirname, 'config', 'config.json'))
 const logger = require(join(__dirname, 'handlers', 'logger'))
 const ShoukakuHandler = require(join(__dirname, 'Extensions', 'Music', 'Handler.js'))
-const Queue = require(join(__dirname, 'Extensions', 'Music', 'Queue.js'));
+const Queue = require(join(__dirname, 'Extensions', 'Music', 'Queue.js'))
 
 // Creating a new client:
 const client = new Client({
@@ -42,10 +42,11 @@ if (!AuthenticationToken) {
 
 // Handler:
 client.commands = new Collection()
+client.commands.alias = new Collection()
 client.slashcmds = new Collection()
 client.events = new Collection()
 client.shoukaku = new ShoukakuHandler(client)
-client.queue = new Queue(client);
+client.queue = new Queue(client)
 
 module.exports = client;
 
