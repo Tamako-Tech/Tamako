@@ -1,5 +1,5 @@
 const { join } = require('path')
-const client = require(join(__dirname, '..', '..', 'index.js'))
+const client = require(join(__dirname, '..', '..', 'bot'))
 const logger = require(join(__dirname, '..', '..', 'handlers', 'logger'))
 
 module.exports = {

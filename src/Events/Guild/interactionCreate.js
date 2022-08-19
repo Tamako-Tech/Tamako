@@ -1,6 +1,6 @@
 const { EmbedBuilder, PermissionsBitField } = require('discord.js')
 const { join } = require('path')
-const client = require(join(__dirname, '..', '..', 'index'))
+const client = require(join(__dirname, '..', '..', 'bot.js'))
 const config = require(join(__dirname, '..', '..', 'config', 'config.json'))
 const logger = require(join(__dirname, '..', '..', 'handlers', 'logger'))
 

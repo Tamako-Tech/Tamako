@@ -4,6 +4,7 @@ specifiers:
   '@discordjs/voice': ^0.11.0
   chalk: ^4.1.2
   discord-api-types: ^0.36.2
+  discord-hybrid-sharding: ^1.7.1
   discord.js: ^14.2.0
   dotenv: ^16.0.1
   html-entities: ^2.3.3
@@ -19,6 +20,7 @@ dependencies:
   '@discordjs/voice': 0.11.0
   chalk: 4.1.2
   discord-api-types: 0.36.3
+  discord-hybrid-sharding: 1.7.1
   discord.js: 14.2.0
   dotenv: 16.0.1
   html-entities: 2.3.3
@@ -417,6 +419,14 @@ packages:
 
   /discord-api-types/0.36.3:
     resolution: {integrity: sha512-bz/NDyG0KBo/tY14vSkrwQ/n3HKPf87a0WFW/1M9+tXYK+vp5Z5EksawfCWo2zkAc6o7CClc0eff1Pjrqznlwg==}
+    dev: false
+
+  /discord-hybrid-sharding/1.7.1:
+    resolution: {integrity: sha512-pdqLVbVCoqt5Ca4p8xqmCSdcQnXopQHk6P9NXrasJFjsWqhWM7Ct18ZYBsPspHBLaS8UQBkGpSSwGALuhEq0YQ==}
+    dependencies:
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /discord.js/14.2.0:
