@@ -66,8 +66,8 @@ If you love this work and wish to contribute in another manner, please do join o
 ## Honourable Mentions
 - Sakurajimai#6742 [maisans-maid](https://github.com/maisans-maid)<br/>
   Checkout [Mai Bot](https://github.com/maisans-maid/Mai)
-- [Nathaniel-VFX](https://github.com/Nathaniel-VFX)<br/>
-  Heavily modified handler from his [Repo](https://github.com/Nathaniel-VFX/Discord.js-v14-Command-Handlers/tree/main/slashCommands)
+- [TFAGaming](https://github.com/TFAGaming)<br/>
+  Heavily modified handler from his [Repo](https://github.com/TFAGaming/DiscordJS-V14-Bot-Template)
 - Axel [kakarot-dev](https://github.com/kakarot-dev)<br/>
   For Helping me with debugging
 

@@ -3,6 +3,8 @@ const { Client, Partials, Collection, GatewayIntentBits } = require('discord.js'
 const { join } = require('path')
 const config = require(join(__dirname, 'config', 'config.json'))
 const logger = require(join(__dirname, 'handlers', 'logger'))
+const ShoukakuHandler = require(join(__dirname, 'Extensions', 'Music', 'Handler.js'))
+const Queue = require(join(__dirname, 'Extensions', 'Music', 'Queue.js'));
 
 // Creating a new client:
 const client = new Client({
@@ -11,6 +13,7 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.GuildPresences,
     GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.GuildVoiceStates,
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.MessageContent
   ],
@@ -41,6 +44,8 @@ if (!AuthenticationToken) {
 client.commands = new Collection()
 client.slashcmds = new Collection()
 client.events = new Collection()
+client.shoukaku = new ShoukakuHandler(client)
+client.queue = new Queue(client);
 
 module.exports = client;
 
