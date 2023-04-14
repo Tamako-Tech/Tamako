@@ -4,7 +4,7 @@
 
 Read the full license <a href="https://github.com/Tamako-Tech/Tamako/blob/main/LICENSE.md">here</a>
 
-Rewrite for Tamako that will be written on the freshly released of djs is just around the corner
+Decided on a rewrite in GoLang starting 25th April
 
 ---
 
