@@ -2,9 +2,9 @@ package common
 
 import (
 	"context"
-	"fmt"
 	"time"
 
+	"github.com/BearTS/Tamako/pkg/embed_maps/modules/common_embeds"
 	"github.com/andersfylling/disgord"
 )
 
@@ -37,22 +37,7 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Me
 	ping, _ := s.AvgHeartbeatLatency()
 
 	// Create the embed.
-	embed := &disgord.Embed{
-		Title: "Pong!",
-		Color: 0x00ff00,
-		Fields: []*disgord.EmbedField{
-			{
-				Name:   "API Latency",
-				Value:  fmt.Sprintf("%d ms", latency),
-				Inline: true,
-			},
-			{
-				Name:   "Websocket Ping",
-				Value:  fmt.Sprintf("%d ms", ping),
-				Inline: true,
-			},
-		},
-	}
+	embed := common_embeds.GetPingEmbed(latency, ping)
 
 	// delete the original message.
 	if err = s.Channel(editMsg.ChannelID).Message(editMsg.ID).Delete(); err != nil {

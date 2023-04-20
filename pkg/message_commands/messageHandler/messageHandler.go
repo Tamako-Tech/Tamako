@@ -9,12 +9,13 @@ import (
 	"github.com/andersfylling/disgord/std"
 )
 
+// This is the main function that handles all message commands
 func HandleMessageCommands(client *disgord.Client, ctx context.Context) {
 	handleBotMentionCommands(client, ctx)
 	handlePrefixCommands(client, ctx)
 }
 
-// handleMsg is a basic command handler
+// handlePrefixCommands is a basic command handler to handle commands with a prefix
 func handlePrefixCommands(client *disgord.Client, ctx context.Context) {
 	prefix := "t!"
 
@@ -39,6 +40,7 @@ func handlePrefixCommands(client *disgord.Client, ctx context.Context) {
 
 }
 
+// handleBotMentionCommands is a basic command handler to handle commands with a bot mention prefix
 func handleBotMentionCommands(client *disgord.Client, ctx context.Context) {
 	filter, _ := std.NewMsgFilter(context.Background(), client)
 
