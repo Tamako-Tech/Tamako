@@ -34,8 +34,7 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Me
 	latency := t2.Sub(t1).Milliseconds()
 
 	// Calculate the websocket ping.
-	latencies, _ := s.HeartbeatLatencies()
-	ping := latencies[0].Milliseconds()
+	ping, _ := s.AvgHeartbeatLatency()
 
 	// Create the embed.
 	embed := &disgord.Embed{
