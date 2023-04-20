@@ -29,12 +29,11 @@ func handlePrefixCommands(client *disgord.Client, ctx context.Context) {
 		logFilter.LogMsg,   // log command message
 	).MessageCreate(func(s disgord.Session, data *disgord.MessageCreate) {
 		msg := data.Message
-		switch msg.Content {
-		case "ping": // whenever the message written is "ping", the bot replies "pong"
-			_, err := msg.Reply(context.Background(), s, "pong")
-			logger.Error(err, "Error replying to message")
-		default: // unknown command, bot does nothing.
-			return
+		if commandHandler, ok := modules.CommandsMap[msg.Content]; ok {
+			if err := commandHandler.Run(context.Background(), s, msg); err != nil {
+				logger.Error(err, "Error handling command")
+				return
+			}
 		}
 	})
 
