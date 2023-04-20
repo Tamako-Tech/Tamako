@@ -4,89 +4,56 @@ import (
 	"context"
 	"os"
 
+	"github.com/BearTS/Tamako/pkg/message_commands/messageHandler"
 	"github.com/andersfylling/disgord"
-	"github.com/andersfylling/disgord/std"
+	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
-)
-
-var (
-	appID  disgord.Snowflake = disgord.Snowflake(0)
-	client disgord.Session
 )
 
 var log = &logrus.Logger{
 	Out:       os.Stderr,
 	Formatter: new(logrus.TextFormatter),
 	Hooks:     make(logrus.LevelHooks),
-	Level:     logrus.DebugLevel,
+	Level:     logrus.InfoLevel,
+}
+
+var noCtx = context.Background()
+
+// checkErr logs errors if not nil, along with a user-specified trace
+func checkErr(err error, trace string) {
+	if err != nil {
+		log.WithFields(logrus.Fields{
+			"trace": trace,
+		}).Error(err)
+	}
 }
 
 func main() {
-	slashCmds := []*disgord.CreateApplicationCommand{
-		{
-			Name:        "example_buttons",
-			Description: "makes example button components. these components don't do anything.",
-			Type:        disgord.ApplicationCommandChatInput,
-		},
-		{
-			Name:        "example_select_menu",
-			Description: "makes example select menu. these components don't do anything.",
-			Type:        disgord.ApplicationCommandChatInput,
-		},
-		{
-			Name:        "example_modal",
-			Description: "makes example modal. these components don't do anything.",
-			Type:        disgord.ApplicationCommandChatInput,
-		},
-		{
-			Name:        "test_command",
-			Description: "just testing",
-			Options: []*disgord.ApplicationCommandOption{
-				{
-					Name:        "test_option",
-					Type:        disgord.OptionTypeString,
-					Description: "testing options",
-					Choices: []*disgord.ApplicationCommandOptionChoice{
-						{
-							Name:  "test_choice",
-							Value: "test_val",
-						},
-					},
-				},
-			},
-		},
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
 	}
 
-	// Set up a new Disgord client
 	client := disgord.New(disgord.Config{
-		BotToken: os.Getenv("DISGORD_TOKEN"),
-		Logger:   log,
-		Intents:  disgord.IntentGuildMessages,
+		ProjectName: "MyBot",
+		BotToken:    os.Getenv("DISCORD_TOKEN"),
+		Logger:      log,
+		Intents:     disgord.IntentGuildMessages,
+		// ! Non-functional due to a current bug, will be fixed.
+		Presence: &disgord.UpdateStatusPayload{
+			Game: &disgord.Activity{
+				Name: "with Disgord",
+				Type: disgord.ActivityTypeCompeting,
+			},
+		},
 	})
+
 	defer client.Gateway().StayConnectedUntilInterrupted()
 
-	// ? Slash commands
+	messageHandler.HandleMessageCommands(client, noCtx)
+	// create a handler and bind it to the bot init
+	// dummy log print
 	client.Gateway().BotReady(func() {
-		for i := 0; i < len(slashCmds); i++ {
-			err := client.ApplicationCommand(appID).Guild(486833611564253184).Create(slashCmds[i])
-			if err != nil {
-				log.Error(err)
-			}
-		}
+		log.Info("Bot is ready!")
 	})
-	client.Gateway().InteractionCreateChan(
-		exampleButtonsIntCreateHandler,
-		exampleSelectMenuIntCreateHandler,
-		exampleModalIntCreateHandler,
-		exampleModalSubmitIntCreateHandler,
-	)
-
-	// Normal message handler
-	content, _ := std.NewMsgFilter(context.Background(), client)
-	content.SetPrefix("ping")
-	client.Gateway().
-		WithMiddleware(content.HasPrefix).
-		MessageCreate(func(s disgord.Session, evt *disgord.MessageCreate) {
-			_, _ = evt.Message.Reply(context.Background(), s, "pong")
-		})
 }
