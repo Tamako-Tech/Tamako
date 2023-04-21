@@ -1,9 +1,9 @@
-package common
+package utility
 
 import (
 	"context"
 
-	"github.com/BearTS/Tamako/pkg/embed_maps/modules/common_embeds"
+	"github.com/BearTS/Tamako/pkg/embed_maps/modules/utility_embeds"
 
 	"github.com/andersfylling/disgord"
 )
@@ -23,10 +23,14 @@ func (a AboutCommand) Description() string {
 	return "About Tamako"
 }
 
+func (a AboutCommand) Category() string {
+	return "utility"
+}
+
 func (a AboutCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error {
 
 	// Create the embed.
-	updatedEmbed := common_embeds.GetAboutEmbed()
+	updatedEmbed := utility_embeds.GetAboutEmbed()
 
 	// Send the reply
 	if _, err := msg.Reply(context.Background(), s, updatedEmbed); err != nil {

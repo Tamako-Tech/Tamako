@@ -3,22 +3,22 @@ package modules
 import (
 	"context"
 
-	"github.com/BearTS/Tamako/pkg/application_commands/modules/common"
+	"github.com/BearTS/Tamako/pkg/application_commands/modules/utility"
 
 	"github.com/andersfylling/disgord"
 )
 
 var Commands = map[Command]*disgord.CreateApplicationCommand{
 	// Common Commands
-	common.PingCommand{}: {
-		Name:        common.PingCommand{}.Name(),
-		Description: common.PingCommand{}.Description(),
-		Options:     common.PingCommand{}.Options(),
+	utility.PingCommand{}: {
+		Name:        utility.PingCommand{}.Name(),
+		Description: utility.PingCommand{}.Description(),
+		Options:     utility.PingCommand{}.Options(),
 	},
-	common.AboutCommand{}: {
-		Name:        common.AboutCommand{}.Name(),
-		Description: common.AboutCommand{}.Description(),
-		Options:     common.AboutCommand{}.Options(),
+	utility.AboutCommand{}: {
+		Name:        utility.AboutCommand{}.Name(),
+		Description: utility.AboutCommand{}.Description(),
+		Options:     utility.AboutCommand{}.Options(),
 	},
 }
 

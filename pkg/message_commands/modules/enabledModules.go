@@ -3,7 +3,7 @@ package modules
 import (
 	"context"
 
-	"github.com/BearTS/Tamako/pkg/message_commands/modules/common"
+	"github.com/BearTS/Tamako/pkg/message_commands/modules/utility"
 
 	"github.com/andersfylling/disgord"
 )
@@ -11,11 +11,12 @@ import (
 // Command interface
 type Command interface {
 	Help() string
+	Category() string
 	Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error
 }
 
 var CommandsMap = map[string]Command{
-	// common Commands
-	common.PingCommand{}.Name():  common.PingCommand{},
-	common.AboutCommand{}.Name(): common.AboutCommand{},
+	// utility Commands
+	utility.PingCommand{}.Name():  utility.PingCommand{},
+	utility.AboutCommand{}.Name(): utility.AboutCommand{},
 }

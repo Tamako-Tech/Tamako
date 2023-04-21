@@ -1,9 +1,9 @@
-package common
+package utility
 
 import (
 	"context"
 
-	"github.com/BearTS/Tamako/pkg/embed_maps/modules/common_embeds"
+	"github.com/BearTS/Tamako/pkg/embed_maps/modules/utility_embeds"
 
 	"github.com/andersfylling/disgord"
 )
@@ -26,7 +26,7 @@ func (a AboutCommand) Options() []*disgord.ApplicationCommandOption {
 func (a AboutCommand) Run(ctx context.Context, s disgord.Session, interaction *disgord.InteractionCreate) error {
 
 	// Create the embed.
-	updatedEmbed := common_embeds.GetAboutEmbed()
+	updatedEmbed := utility_embeds.GetAboutEmbed()
 
 	// Edit the message with the new embed.
 	if err := interaction.Reply(ctx, s, &disgord.CreateInteractionResponse{

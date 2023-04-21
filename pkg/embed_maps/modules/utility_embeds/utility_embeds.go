@@ -1,4 +1,4 @@
-package common_embeds
+package utility_embeds
 
 import (
 	"fmt"

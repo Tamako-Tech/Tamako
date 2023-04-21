@@ -1,10 +1,10 @@
-package common
+package utility
 
 import (
 	"context"
 	"time"
 
-	"github.com/BearTS/Tamako/pkg/embed_maps/modules/common_embeds"
+	"github.com/BearTS/Tamako/pkg/embed_maps/modules/utility_embeds"
 
 	"github.com/andersfylling/disgord"
 )
@@ -24,11 +24,15 @@ func (p PingCommand) Description() string {
 	return "Responds with 'pong'"
 }
 
+func (p PingCommand) Category() string {
+	return "utility"
+}
+
 func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error {
 	// Record the current time.
 	t1 := time.Now()
 
-	loadingEmbed, _ := common_embeds.GetPingEmbed(0, 0)
+	loadingEmbed, _ := utility_embeds.GetPingEmbed(0, 0)
 
 	// Send a message to measure the time taken to edit it.
 	editMsg, err := msg.Reply(context.Background(), s, loadingEmbed)
@@ -44,7 +48,7 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Me
 	ping, _ := s.AvgHeartbeatLatency()
 
 	// Create the embed.
-	_, embed := common_embeds.GetPingEmbed(latency, ping)
+	_, embed := utility_embeds.GetPingEmbed(latency, ping)
 
 	// delete the original message.
 	if err = s.Channel(editMsg.ChannelID).Message(editMsg.ID).Delete(); err != nil {
