@@ -7,12 +7,17 @@ import (
 	"github.com/andersfylling/disgord"
 )
 
-var Commands = []*disgord.CreateApplicationCommand{
+var Commands = map[Command]*disgord.CreateApplicationCommand{
 	// Common Commands
-	{
+	common.PingCommand{}: {
 		Name:        common.PingCommand{}.Name(),
 		Description: common.PingCommand{}.Description(),
 		Options:     common.PingCommand{}.Options(),
+	},
+	common.AboutCommand{}: {
+		Name:        common.AboutCommand{}.Name(),
+		Description: common.AboutCommand{}.Description(),
+		Options:     common.AboutCommand{}.Options(),
 	},
 }
 
@@ -23,8 +28,3 @@ type Command interface {
 	Run(ctx context.Context, s disgord.Session, interaction *disgord.InteractionCreate) error
 }
 
-var CommandsMap = map[string]Command{
-	// Common Commands
-	common.PingCommand{}.Name():  common.PingCommand{},
-	common.AboutCommand{}.Name(): common.AboutCommand{},
-}
