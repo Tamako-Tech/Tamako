@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/BearTS/Tamako/pkg/embed_maps/modules/utility_embeds"
+	"github.com/BearTS/Tamako/pkg/common/embed_maps/utility_embeds"
 
 	"github.com/andersfylling/disgord"
 )
