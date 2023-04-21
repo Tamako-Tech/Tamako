@@ -15,7 +15,7 @@ func HandleApplicationCommands(client *disgord.Client, ctx context.Context) {
 	client.Gateway().InteractionCreate(func(s disgord.Session, i *disgord.InteractionCreate) {
 		if i.Type == disgord.InteractionApplicationCommand {
 			// instead of using commandsMap use commands slice
-			for command, _ := range modules.Commands {
+			for command := range modules.Commands {
 				if i.Data.Name == command.Name() {
 					if err := command.Run(context.Background(), s, i); err != nil {
 						logger.Trace(err, "Error handling command")
