@@ -10,9 +10,6 @@ import (
 
 // This is the main function that handles all message commands
 func HandleApplicationCommands(client *disgord.Client, ctx context.Context) {
-	// register commands once the bot is ready
-	
-
 	// handle application commands
 	client.Gateway().InteractionCreate(func(s disgord.Session, i *disgord.InteractionCreate) {
 		if i.Type == disgord.InteractionApplicationCommand {
