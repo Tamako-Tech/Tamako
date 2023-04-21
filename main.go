@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/BearTS/Tamako/pkg/application_commands/handler"
+	"github.com/BearTS/Tamako/pkg/events"
 	messageHandler "github.com/BearTS/Tamako/pkg/message_commands/handler"
 	"github.com/andersfylling/disgord"
 	"github.com/joho/godotenv"
@@ -50,6 +51,9 @@ func main() {
 	})
 
 	defer client.Gateway().StayConnectedUntilInterrupted()
+
+	// load events
+	events.LoadEvents(noCtx, client)
 
 	messageHandler.HandleMessageCommands(client, noCtx)
 	handler.HandleApplicationCommands(client, noCtx)
