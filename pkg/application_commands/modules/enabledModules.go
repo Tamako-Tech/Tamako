@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/BearTS/Tamako/pkg/application_commands/modules/common"
+
 	"github.com/andersfylling/disgord"
 )
 
@@ -27,4 +28,3 @@ type Command interface {
 	Options() []*disgord.ApplicationCommandOption
 	Run(ctx context.Context, s disgord.Session, interaction *disgord.InteractionCreate) error
 }
-

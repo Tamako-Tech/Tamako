@@ -5,10 +5,11 @@ import (
 
 	"github.com/BearTS/Tamako/pkg/application_commands/modules"
 	"github.com/BearTS/Tamako/utils/logger"
+
 	"github.com/andersfylling/disgord"
 )
 
-// This is the main function that handles all message commands
+// This is the main function that handles all application commands
 func HandleApplicationCommands(client *disgord.Client, ctx context.Context) {
 	// handle application commands
 	client.Gateway().InteractionCreate(func(s disgord.Session, i *disgord.InteractionCreate) {
@@ -24,7 +25,5 @@ func HandleApplicationCommands(client *disgord.Client, ctx context.Context) {
 				}
 			}
 		}
-
 	})
-
 }

@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/BearTS/Tamako/pkg/embed_maps/modules/common_embeds"
+
 	"github.com/andersfylling/disgord"
 )
 
