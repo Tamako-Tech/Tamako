@@ -100,3 +100,40 @@ func GetHelpEmbed(ctx context.Context) *disgord.Embed {
 
 	return embed
 }
+
+func GetUserinfoEmbed(user *disgord.User) *disgord.Embed {
+	avatarURL, _ := user.AvatarURL(1024, true)
+
+	embed := &disgord.Embed{
+		Title:       "User Info",
+		Description: "Information about " + user.Username,
+		Color:       0x00ff00,
+		Thumbnail: &disgord.EmbedThumbnail{
+			URL: avatarURL,
+		},
+		Fields: []*disgord.EmbedField{
+			{
+				Name:   "Username",
+				Value:  user.Username,
+				Inline: true,
+			},
+			{
+				Name:   "Discriminator",
+				Value:  user.Discriminator.String(),
+				Inline: true,
+			},
+			{
+				Name:   "ID",
+				Value:  user.ID.String(),
+				Inline: true,
+			},
+			{
+				Name:   "Bot",
+				Value:  fmt.Sprintf("%v", user.Bot),
+				Inline: true,
+			},
+		},
+	}
+
+	return embed
+}
