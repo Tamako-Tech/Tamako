@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/BearTS/Tamako/pkg/application_commands/handler"
+	applicationCommandsHandler "github.com/BearTS/Tamako/pkg/application_commands"
 	"github.com/BearTS/Tamako/pkg/events"
-	messageHandler "github.com/BearTS/Tamako/pkg/message_commands/handler"
+	messageCommandsHandler "github.com/BearTS/Tamako/pkg/message_commands"
 	"github.com/BearTS/Tamako/pkg/structs"
 	"github.com/BearTS/Tamako/services/registry"
 
@@ -56,7 +56,7 @@ func main() {
 
 	defer client.Gateway().StayConnectedUntilInterrupted()
 
-	messageCommandsMap := messageHandler.GetCommands()
+	messageCommandsMap := messageCommandsHandler.GetCommands()
 
 	var commandsMap []structs.CommandsMap
 
@@ -83,8 +83,8 @@ func main() {
 	// load events
 	events.LoadEvents(ctx, client)
 
-	messageHandler.HandleMessageCommands(ctx, client)
-	handler.HandleApplicationCommands(ctx, client)
+	messageCommandsHandler.HandleMessageCommands(ctx, client)
+	applicationCommandsHandler.HandleApplicationCommands(ctx, client)
 	// create a handler and bind it to the bot init
 	// dummy log print
 	client.Gateway().BotReady(func() {
