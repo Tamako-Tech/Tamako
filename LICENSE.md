@@ -10,7 +10,7 @@ Software: Tamako Bot
 
 License: Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License
 
-Licensor: BearTS
+Licensor: Anuj Parihar (BearTS)
 
 <hr />
 
