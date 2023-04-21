@@ -8,8 +8,15 @@ import (
 )
 
 // GetPingEmbed returns an embed with the given latency and ping.
-func GetPingEmbed(latency int64, ping time.Duration) *disgord.Embed {
-	return &disgord.Embed{
+func GetPingEmbed(latency int64, ping time.Duration) (*disgord.Embed, *disgord.Embed) {
+
+	loadingEmbed := &disgord.Embed{
+		Title:       "Pinging...",
+		Description: "Please wait...",
+		Color:       0x00ff00,
+	}
+
+	finalEmbed := &disgord.Embed{
 		Title: "Pong!",
 		Color: 0x00ff00,
 		Fields: []*disgord.EmbedField{
@@ -25,4 +32,6 @@ func GetPingEmbed(latency int64, ping time.Duration) *disgord.Embed {
 			},
 		},
 	}
+
+	return loadingEmbed, finalEmbed
 }

@@ -1,4 +1,4 @@
-package messageHandler
+package handler
 
 import (
 	"context"

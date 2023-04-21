@@ -4,7 +4,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/BearTS/Tamako/pkg/message_commands/messageHandler"
+	"github.com/BearTS/Tamako/pkg/application_commands/handler"
+	messageHandler "github.com/BearTS/Tamako/pkg/message_commands/handler"
 	"github.com/andersfylling/disgord"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
@@ -51,6 +52,7 @@ func main() {
 	defer client.Gateway().StayConnectedUntilInterrupted()
 
 	messageHandler.HandleMessageCommands(client, noCtx)
+	handler.HandleApplicationCommands(client, noCtx)
 	// create a handler and bind it to the bot init
 	// dummy log print
 	client.Gateway().BotReady(func() {

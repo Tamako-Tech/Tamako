@@ -28,3 +28,9 @@ func Error(args ...interface{}) {
 	}
 	log.Error(args...)
 }
+
+func Trace(args ...interface{}) {
+	log.WithFields(logrus.Fields{
+		"trace": args[1],
+	}).Error(args[0])
+}
