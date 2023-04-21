@@ -37,12 +37,18 @@ func handlePrefixCommands(ctx context.Context, client *disgord.Client) {
 	).MessageCreate(func(s disgord.Session, data *disgord.MessageCreate) {
 		msg := data.Message
 		for commandName, commandHandler := range CommandMap {
-			if len(msg.Content) >= len(commandName) && msg.Content[:len(commandName)] == commandName {
-				if err := commandHandler.Run(context.Background(), s, msg); err != nil {
-					logger.Error(err, "Error handling command")
-					return
+			aliases := commandHandler.Aliases()
+			aliases = append(aliases, commandName)
+			for _, alias := range aliases {
+				if msg.Content == alias {
+					// Run the command
+					if err := commandHandler.Run(context.Background(), s, msg); err != nil {
+						// Log the error
+						logger.Error(err, "Error handling command")
+						return
+					}
+					break
 				}
-				break
 			}
 		}
 	})
