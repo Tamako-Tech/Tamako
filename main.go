@@ -8,8 +8,8 @@ import (
 	"github.com/BearTS/Tamako/pkg/application_commands/handler"
 	"github.com/BearTS/Tamako/pkg/events"
 	messageHandler "github.com/BearTS/Tamako/pkg/message_commands/handler"
+	"github.com/BearTS/Tamako/pkg/structs"
 	"github.com/BearTS/Tamako/services/registry"
-	"github.com/BearTS/Tamako/structs"
 
 	"github.com/andersfylling/disgord"
 	"github.com/joho/godotenv"

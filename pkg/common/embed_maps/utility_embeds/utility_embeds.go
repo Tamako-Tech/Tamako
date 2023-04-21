@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/BearTS/Tamako/pkg/structs"
 	"github.com/BearTS/Tamako/services/registry"
-	"github.com/BearTS/Tamako/structs"
 	"github.com/andersfylling/disgord"
 )
 
