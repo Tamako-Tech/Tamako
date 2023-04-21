@@ -16,6 +16,10 @@ func (p PingCommand) Name() string {
 	return "ping"
 }
 
+func (p PingCommand) Aliases() []string {
+	return []string{"pong"}
+}
+
 func (p PingCommand) Help() string {
 	return "Responds with 'pong'"
 }

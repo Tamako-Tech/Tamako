@@ -16,6 +16,10 @@ func (u UserInfoCommand) Name() string {
 	return "userinfo"
 }
 
+func (u UserInfoCommand) Aliases() []string {
+	return []string{"ui"}
+}
+
 func (u UserInfoCommand) Help() string {
 	return "Shows information about a user."
 }

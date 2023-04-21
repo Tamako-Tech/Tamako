@@ -137,3 +137,59 @@ func GetUserinfoEmbed(user *disgord.User) *disgord.Embed {
 
 	return embed
 }
+
+func GetServerinfoEmbed(server *disgord.Guild) *disgord.Embed {
+	embed := &disgord.Embed{
+		Title: server.Name,
+		Color: 0x00ff00,
+		Fields: []*disgord.EmbedField{
+			{
+				Name:   "ID",
+				Value:  server.ID.String(),
+				Inline: true,
+			},
+			{
+				Name:   "Owner",
+				Value:  server.OwnerID.String(),
+				Inline: true,
+			},
+			{
+				Name:   "Members",
+				Value:  fmt.Sprintf("%d", server.MemberCount),
+				Inline: true,
+			},
+			{
+				Name:   "Channels",
+				Value:  fmt.Sprintf("%d", len(server.Channels)),
+				Inline: true,
+			},
+			{
+				Name:   "Roles",
+				Value:  fmt.Sprintf("%d", len(server.Roles)),
+				Inline: true,
+			},
+			{
+				Name:   "Emojis",
+				Value:  fmt.Sprintf("%d", len(server.Emojis)),
+				Inline: true,
+			},
+			{
+				Name:   "Region",
+				Value:  server.Region,
+				Inline: true,
+			},
+			{
+				Name:   "Boosts",
+				Value:  fmt.Sprintf("%d", server.PremiumSubscriptionCount),
+				Inline: true,
+			},
+			{
+				Name:   "Boost Level",
+				Value:  fmt.Sprintf("%d", server.PremiumTier),
+				Inline: true,
+			},
+		},
+	}
+
+	return embed
+}

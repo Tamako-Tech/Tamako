@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/BearTS/Tamako/pkg/common/embed_maps/utility_embeds"
-	
+
 	"github.com/andersfylling/disgord"
 )
 
@@ -13,6 +13,10 @@ type AboutCommand struct{}
 
 func (a AboutCommand) Name() string {
 	return "about"
+}
+
+func (a AboutCommand) Aliases() []string {
+	return []string{"info"}
 }
 
 func (a AboutCommand) Help() string {

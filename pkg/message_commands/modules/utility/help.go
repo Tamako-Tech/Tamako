@@ -14,6 +14,10 @@ func (h HelpCommand) Name() string {
 	return "help"
 }
 
+func (h HelpCommand) Aliases() []string {
+	return []string{"h"}
+}
+
 func (h HelpCommand) Help() string {
 	return "Shows a list of commands."
 }
