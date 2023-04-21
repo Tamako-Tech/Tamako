@@ -22,9 +22,6 @@ Rewrite for Tamako that will be written on the freshly released of djs is just a
   <a href="https://github.com/BearTS/Tamako">
     <img src="https://img.shields.io/github/package-json/v/BearTS/tamako/main?color=pink&label=Current%20Version" alt="App Version" />
   </a>
-  <a href="https://nodejs.org/dist/latest-v16.x/">
-    <img src="https://img.shields.io/static/v1?label=node&message=>=16.0.0&color=success&logo=Node.js&logoColor=white" alt="Node Requirements">
-  </a>
   <!-- <a href="https://github.com/BearTS/Tamako">
     <img src="https://img.shields.io/github/workflow/status/BearTS/Tamako/Docker%20Image" alt="build">
   </a> -->
