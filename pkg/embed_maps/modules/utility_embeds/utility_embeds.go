@@ -2,9 +2,12 @@ package utility_embeds
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"time"
 
+	"github.com/BearTS/Tamako/services/registry"
+	"github.com/BearTS/Tamako/structs"
 	"github.com/andersfylling/disgord"
 )
 
@@ -78,15 +81,22 @@ func GetHelpEmbed(ctx context.Context) *disgord.Embed {
 		Color:       0x00ff00,
 	}
 
-	// cmdMap := ctx.Value("cmdMap").(map[string]modules.Command)
-	// // Add a field for each command.
-	// for _, cmd := range cmdMap {
-	// 	embed.Fields = append(embed.Fields, &disgord.EmbedField{
-	// 		Name:   cmd.Name(),
-	// 		Value:  cmd.Help(),
-	// 		Inline: false,
-	// 	})
-	// }
+	var commandMap []structs.CommandsMap
+
+	// Get From Registry
+	commandsFromRegistry, _ := registry.GetInstance().GetValue("commands")
+	if err := json.Unmarshal(commandsFromRegistry, &commandMap); err != nil {
+		fmt.Println(err)
+	}
+
+	for _, command := range commandMap {
+		// Category, Name, Description, Help
+		embed.Fields = append(embed.Fields, &disgord.EmbedField{
+			Name:   fmt.Sprintf("%s - %s", command.Category, command.Name),
+			Value:  fmt.Sprintf("%s\n%s", command.Description, command.Help),
+			Inline: false,
+		})
+	}
 
 	return embed
 }

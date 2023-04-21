@@ -2,15 +2,21 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"os"
 
 	"github.com/BearTS/Tamako/pkg/application_commands/handler"
 	"github.com/BearTS/Tamako/pkg/events"
 	messageHandler "github.com/BearTS/Tamako/pkg/message_commands/handler"
+	"github.com/BearTS/Tamako/services/registry"
+	"github.com/BearTS/Tamako/structs"
+
 	"github.com/andersfylling/disgord"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 )
+
+var ctx = context.Background()
 
 var log = &logrus.Logger{
 	Out:       os.Stderr,
@@ -18,8 +24,6 @@ var log = &logrus.Logger{
 	Hooks:     make(logrus.LevelHooks),
 	Level:     logrus.InfoLevel,
 }
-
-var noCtx = context.Background()
 
 // checkErr logs errors if not nil, along with a user-specified trace
 func checkErr(err error, trace string) {
@@ -52,11 +56,35 @@ func main() {
 
 	defer client.Gateway().StayConnectedUntilInterrupted()
 
-	// load events
-	events.LoadEvents(noCtx, client)
+	messageCommandsMap := messageHandler.GetCommands()
 
-	messageHandler.HandleMessageCommands(client, noCtx)
-	handler.HandleApplicationCommands(client, noCtx)
+	var commandsMap []structs.CommandsMap
+
+	for _, v := range messageCommandsMap {
+		name := v.Name()
+		description := v.Description()
+		category := v.Category()
+
+		commandsMap = append(commandsMap, structs.CommandsMap{
+			Name:        name,
+			Description: description,
+			Category:    category,
+		})
+	}
+
+	b, err := json.Marshal(commandsMap)
+	if err != nil {
+		panic(err)
+	}
+
+	// Register Commands to internal cache
+	registry.GetInstance().SetValue("commands", b)
+
+	// load events
+	events.LoadEvents(ctx, client)
+
+	messageHandler.HandleMessageCommands(ctx, client)
+	handler.HandleApplicationCommands(ctx, client)
 	// create a handler and bind it to the bot init
 	// dummy log print
 	client.Gateway().BotReady(func() {

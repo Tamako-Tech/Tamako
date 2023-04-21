@@ -27,7 +27,6 @@ func (h HelpCommand) Category() string {
 
 func (h HelpCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error {
 	embed := utility_embeds.GetHelpEmbed(ctx)
-	// Send the embed.
 	_, err := msg.Reply(context.Background(), s, embed)
 	return err
 }
