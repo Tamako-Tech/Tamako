@@ -1,6 +1,7 @@
 package utility_embeds
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -65,4 +66,27 @@ func GetAboutEmbed() *disgord.Embed {
 			},
 		},
 	}
+}
+
+// GetHelpEmbed returns an embed with a list of commands.
+func GetHelpEmbed(ctx context.Context) *disgord.Embed {
+
+	// Create the embed.
+	embed := &disgord.Embed{
+		Title:       "Help",
+		Description: "Here is a list of commands.",
+		Color:       0x00ff00,
+	}
+
+	// cmdMap := ctx.Value("cmdMap").(map[string]modules.Command)
+	// // Add a field for each command.
+	// for _, cmd := range cmdMap {
+	// 	embed.Fields = append(embed.Fields, &disgord.EmbedField{
+	// 		Name:   cmd.Name(),
+	// 		Value:  cmd.Help(),
+	// 		Inline: false,
+	// 	})
+	// }
+
+	return embed
 }

@@ -10,6 +10,7 @@ import (
 
 // Command interface
 type Command interface {
+	Name() string
 	Help() string
 	Category() string
 	Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error
