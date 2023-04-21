@@ -35,3 +35,34 @@ func GetPingEmbed(latency int64, ping time.Duration) (*disgord.Embed, *disgord.E
 
 	return loadingEmbed, finalEmbed
 }
+
+// GetAboutEmbed returns an embed with information about Tamako.
+func GetAboutEmbed() *disgord.Embed {
+	return &disgord.Embed{
+		Title:       "About Tamako",
+		Color:       0x00ff00,
+		Description: `Tamako is a multi-purpose Discord bot written in Go.`,
+		Fields: []*disgord.EmbedField{
+			{
+				Name:   "Author",
+				Value:  "BearTS",
+				Inline: true,
+			},
+			{
+				Name:   "Source Code",
+				Value:  "[GitHub](https://github.com/Tamako-Tech/Tamako)",
+				Inline: true,
+			},
+			{
+				Name:   "Invite",
+				Value:  "Placeholder",
+				Inline: true,
+			},
+			{
+				Name:   "Support Server",
+				Value:  "Placeholder",
+				Inline: true,
+			},
+		},
+	}
+}

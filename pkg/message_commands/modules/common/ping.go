@@ -19,6 +19,10 @@ func (p PingCommand) Help() string {
 	return "Responds with 'pong'"
 }
 
+func (p PingCommand) Description() string {
+	return "Responds with 'pong'"
+}
+
 func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error {
 	// Record the current time.
 	t1 := time.Now()

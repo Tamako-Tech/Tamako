@@ -15,5 +15,6 @@ type Command interface {
 
 var CommandsMap = map[string]Command{
 	// common Commands
-	common.PingCommand{}.Name(): common.PingCommand{},
+	common.PingCommand{}.Name():  common.PingCommand{},
+	common.AboutCommand{}.Name(): common.AboutCommand{},
 }
