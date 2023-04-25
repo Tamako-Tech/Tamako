@@ -1,10 +1,11 @@
-package common
+package utility
 
 import (
 	"context"
 	"time"
 
-	"github.com/BearTS/Tamako/pkg/embed_maps/modules/common_embeds"
+	"github.com/BearTS/Tamako/pkg/common/embed_maps/utility_embeds"
+
 	"github.com/andersfylling/disgord"
 )
 
@@ -27,7 +28,7 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, interaction *di
 	// Record the current time.
 	t1 := time.Now()
 
-	loadingEmbed, _ := common_embeds.GetPingEmbed(0, 0)
+	loadingEmbed, _ := utility_embeds.GetPingEmbed(0, 0)
 
 	// Send a message to measure the time taken to edit it.
 	if err := interaction.Reply(ctx, s, &disgord.CreateInteractionResponse{
@@ -48,7 +49,7 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, interaction *di
 	ping, _ := s.AvgHeartbeatLatency()
 
 	// Create the embed.
-	_, updatedEmbed := common_embeds.GetPingEmbed(latency, ping)
+	_, updatedEmbed := utility_embeds.GetPingEmbed(latency, ping)
 
 	// Edit the message with the new embed.
 	if err := interaction.Edit(ctx, s, &disgord.UpdateMessage{

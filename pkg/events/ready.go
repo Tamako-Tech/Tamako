@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/BearTS/Tamako/pkg/application_commands/modules"
-	"github.com/BearTS/Tamako/utils/logger"
+	"github.com/BearTS/Tamako/services/logger"
 	"github.com/andersfylling/disgord"
 )
 
