@@ -24,6 +24,9 @@ func GetCommands() map[string]interfaces.MessageCommand {
 func handlePrefixCommands(ctx context.Context, client *disgord.Client) {
 	prefix := "t!"
 
+	// ! @TODO: @BearTS Build a custom command handler for message commands
+	// ! Get data prefix from db and check and overule the default prefix
+
 	logFilter, _ := std.NewLogFilter(client)
 	filter, _ := std.NewMsgFilter(context.Background(), client)
 	filter.SetPrefix(prefix)
