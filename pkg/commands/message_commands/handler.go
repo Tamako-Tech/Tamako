@@ -3,8 +3,8 @@ package message_commands
 import (
 	"context"
 
+	"github.com/BearTS/Tamako/pkg/commands/message_commands/modules"
 	"github.com/BearTS/Tamako/pkg/interfaces"
-	"github.com/BearTS/Tamako/pkg/message_commands/modules"
 	"github.com/BearTS/Tamako/services/logger"
 
 	"github.com/andersfylling/disgord"

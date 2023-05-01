@@ -1,8 +1,8 @@
 package modules
 
 import (
+	"github.com/BearTS/Tamako/pkg/commands/message_commands/modules/utility"
 	"github.com/BearTS/Tamako/pkg/interfaces"
-	"github.com/BearTS/Tamako/pkg/message_commands/modules/utility"
 )
 
 var CommandsMap = map[string]interfaces.MessageCommand{

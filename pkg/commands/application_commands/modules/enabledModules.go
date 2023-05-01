@@ -3,8 +3,7 @@ package modules
 import (
 	"context"
 
-	"github.com/BearTS/Tamako/pkg/application_commands/modules/utility"
-
+	"github.com/BearTS/Tamako/pkg/commands/application_commands/modules/utility"
 	"github.com/andersfylling/disgord"
 )
 
