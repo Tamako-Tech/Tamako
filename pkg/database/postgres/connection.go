@@ -3,6 +3,7 @@ package postgres
 import (
 	"database/sql"
 	"log"
+	"sync"
 	"time"
 
 	"github.com/BearTS/Tamako/config"
@@ -10,7 +11,13 @@ import (
 	"gorm.io/gorm"
 )
 
-func Connection() (*gorm.DB, *sql.DB) {
+var (
+	once  sync.Once
+	db    *gorm.DB
+	sqlDB *sql.DB
+)
+
+func newConnection() (*gorm.DB, *sql.DB) {
 	dsn := "host=" + config.DB.Host +
 		" user=" + config.DB.Username +
 		" password=" + config.DB.Password +
@@ -32,5 +39,12 @@ func Connection() (*gorm.DB, *sql.DB) {
 	sqlDB.SetMaxOpenConns(100)
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
+	return db, sqlDB
+}
+
+func GetConnection() (*gorm.DB, *sql.DB) {
+	once.Do(func() {
+		db, sqlDB = newConnection()
+	})
 	return db, sqlDB
 }

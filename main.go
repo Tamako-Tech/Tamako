@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/BearTS/Tamako/config"
 	applicationCommandsHandler "github.com/BearTS/Tamako/pkg/commands/application_commands"
 	messageCommandsHandler "github.com/BearTS/Tamako/pkg/commands/message_commands"
+	"github.com/BearTS/Tamako/pkg/database/postgres"
 	"github.com/BearTS/Tamako/pkg/events"
 	"github.com/BearTS/Tamako/pkg/structs"
 	"github.com/BearTS/Tamako/services/registry"
 
 	"github.com/andersfylling/disgord"
-	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 )
 
@@ -35,14 +36,16 @@ func checkErr(err error, trace string) {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	config.LoadConfigs()
+
+	// Initialize the db
+	_, _ = postgres.GetConnection()
+
+	discordToken := config.App.DiscordToken
 
 	client := disgord.New(disgord.Config{
-		ProjectName: "MyBot",
-		BotToken:    os.Getenv("DISCORD_TOKEN"),
+		ProjectName: "Tamako",
+		BotToken:    discordToken,
 		Logger:      log,
 		Intents:     disgord.IntentGuildMessages,
 		// ! Non-functional due to a current bug, will be fixed.

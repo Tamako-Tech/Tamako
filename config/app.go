@@ -9,8 +9,9 @@ import (
 )
 
 type AppConfig struct {
-	Env      string
-	RootPath string
+	Env          string
+	RootPath     string
+	DiscordToken string `split_words:"true" json:"APP_DISCORD_TOKEN"`
 }
 
 var App *AppConfig
