@@ -1,0 +1,17 @@
+version: '3'
+services:
+  postgres:
+    container_name: tamako_psql
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tamako
+      POSTGRES_PASSWORD: tamako
+      POSTGRES_DB: tamako
+    networks:
+      - dev_network
+
+networks:
+  dev_network:

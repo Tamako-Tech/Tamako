@@ -11,7 +11,7 @@ func Migrate() *cobra.Command {
 	return &cobra.Command{
 		Use: "migrate",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			dbConnection, sqlConnection := postgres.Connection()
+			dbConnection, sqlConnection := postgres.GetConnection()
 			defer sqlConnection.Close()
 
 			begin := dbConnection.Begin()

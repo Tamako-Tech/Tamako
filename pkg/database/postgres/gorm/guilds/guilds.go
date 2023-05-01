@@ -11,6 +11,7 @@ import (
 /* -------------------------------------------------------------------------- */
 type GormInterface interface {
 	CreateGuildRecord(guild tables.Guilds) (tables.Guilds, error)
+	GetGuildByGuildID(guildID string) (tables.Guilds, error)
 }
 
 /* -------------------------------------------------------------------------- */
@@ -35,6 +36,20 @@ func (r *guildsGormImpl) CreateGuildRecord(guild tables.Guilds) (tables.Guilds, 
 	err := r.DB.Session(&gorm.Session{}).Create(&guild).Error
 	if err != nil {
 		return guild, errors.Wrap(err, "[CreateGuildRecord]")
+	}
+	return guild, err
+}
+
+// GetGuildByID returns a guild record from the database
+func (r *guildsGormImpl) GetGuildByGuildID(guildID string) (tables.Guilds, error) {
+	var guild tables.Guilds
+
+	db := r.DB.Session(&gorm.Session{})
+	result := db.Where("guild_id = ?", guildID).First(&guild)
+
+	err := result.Error
+	if err != nil {
+		return guild, errors.Wrap(result.Error, "[GetGuildByID]")
 	}
 	return guild, err
 }

@@ -8,6 +8,7 @@ import (
 
 func LoadEvents(ctx context.Context, client *disgord.Client) error {
 	botOnReady(ctx, client)
+	guildCreate(ctx, client)
 
 	return nil
 }

@@ -18,7 +18,7 @@ func Seed() *cobra.Command {
 				return nil
 			}
 			fmt.Println("App env is development")
-			dbConnection, sqlConnection := postgres.Connection()
+			dbConnection, sqlConnection := postgres.GetConnection()
 			defer sqlConnection.Close()
 			begin := dbConnection.Begin()
 
