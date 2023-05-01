@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"os"
 
-	applicationCommandsHandler "github.com/BearTS/Tamako/pkg/application_commands"
+	applicationCommandsHandler "github.com/BearTS/Tamako/pkg/commands/application_commands"
+	messageCommandsHandler "github.com/BearTS/Tamako/pkg/commands/message_commands"
 	"github.com/BearTS/Tamako/pkg/events"
-	messageCommandsHandler "github.com/BearTS/Tamako/pkg/message_commands"
 	"github.com/BearTS/Tamako/pkg/structs"
 	"github.com/BearTS/Tamako/services/registry"
 

@@ -3,7 +3,7 @@ package events
 import (
 	"context"
 
-	"github.com/BearTS/Tamako/pkg/application_commands/modules"
+	"github.com/BearTS/Tamako/pkg/commands/application_commands/modules"
 	"github.com/BearTS/Tamako/services/logger"
 	"github.com/andersfylling/disgord"
 )

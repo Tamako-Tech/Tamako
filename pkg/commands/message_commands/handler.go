@@ -3,8 +3,8 @@ package message_commands
 import (
 	"context"
 
+	"github.com/BearTS/Tamako/pkg/commands/message_commands/modules"
 	"github.com/BearTS/Tamako/pkg/interfaces"
-	"github.com/BearTS/Tamako/pkg/message_commands/modules"
 	"github.com/BearTS/Tamako/services/logger"
 
 	"github.com/andersfylling/disgord"
@@ -23,6 +23,9 @@ func GetCommands() map[string]interfaces.MessageCommand {
 // handlePrefixCommands is a basic command handler to handle commands with a prefix
 func handlePrefixCommands(ctx context.Context, client *disgord.Client) {
 	prefix := "t!"
+
+	// ! @TODO: @BearTS Build a custom command handler for message commands
+	// ! Get data prefix from db and check and overule the default prefix
 
 	logFilter, _ := std.NewLogFilter(client)
 	filter, _ := std.NewMsgFilter(context.Background(), client)
