@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/BearTS/Tamako/pkg/structs"
+	"github.com/BearTS/Tamako/services/logger"
 	"github.com/BearTS/Tamako/services/registry"
 	"github.com/andersfylling/disgord"
 )
@@ -86,7 +87,7 @@ func GetHelpEmbed(ctx context.Context) *disgord.Embed {
 	// Get From Registry
 	commandsFromRegistry, _ := registry.GetInstance().GetValue("commands")
 	if err := json.Unmarshal(commandsFromRegistry, &commandMap); err != nil {
-		fmt.Println(err)
+		logger.Error("Failed to unmarshal commands from registry: %v", err)
 	}
 
 	for _, command := range commandMap {
