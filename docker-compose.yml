@@ -13,5 +13,18 @@ services:
     networks:
       - dev_network
 
+  # main:
+  #   depends_on:
+  #     - postgres
+  #   build: .
+  #   container_name: main
+  #   restart: always
+  #   env_file:
+  #     - .env
+  #   stdin_open: true
+  #   tty: true
+  #   networks:
+  #     - dev_network
+
 networks:
   dev_network:

@@ -12,6 +12,7 @@ type AppConfig struct {
 	Env          string
 	RootPath     string
 	DiscordToken string `split_words:"true" json:"APP_DISCORD_TOKEN"`
+	ApiUrl       string `split_words:"true" json:"APP_API_URL"`
 }
 
 var App *AppConfig

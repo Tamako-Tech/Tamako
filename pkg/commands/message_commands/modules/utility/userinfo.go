@@ -2,7 +2,6 @@ package utility
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/BearTS/Tamako/pkg/common/embed_maps/utility_embeds"
 	"github.com/BearTS/Tamako/services/logger"
@@ -34,7 +33,6 @@ func (u UserInfoCommand) Category() string {
 
 func (u UserInfoCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error {
 	var embed *disgord.Embed
-	fmt.Println(msg.Mentions)
 	if len(msg.Mentions) > 0 {
 		embed = utility_embeds.GetUserinfoEmbed(msg.Mentions[0])
 	} else {
