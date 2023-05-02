@@ -28,7 +28,7 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, interaction *di
 	// Record the current time.
 	t1 := time.Now()
 
-	loadingEmbed, _ := utility_embeds.GetPingEmbed(0, 0)
+	loadingEmbed, _ := utility_embeds.GetPingEmbed(0)
 
 	// Send a message to measure the time taken to edit it.
 	if err := interaction.Reply(ctx, s, &disgord.CreateInteractionResponse{
@@ -43,13 +43,10 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, interaction *di
 	// Record the new time.
 	// Record the time taken to send the message and edit it.
 	t2 := time.Now()
-	latency := t2.Sub(t1).Milliseconds()
-
-	// Calculate the websocket ping.
-	ping, _ := s.AvgHeartbeatLatency()
+	latency := t2.Sub(t1)
 
 	// Create the embed.
-	_, updatedEmbed := utility_embeds.GetPingEmbed(latency, ping)
+	_, updatedEmbed := utility_embeds.GetPingEmbed(latency)
 
 	// Edit the message with the new embed.
 	if err := interaction.Edit(ctx, s, &disgord.UpdateMessage{

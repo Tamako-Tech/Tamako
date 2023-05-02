@@ -12,7 +12,7 @@ import (
 )
 
 // GetPingEmbed returns an embed with the given latency and ping.
-func GetPingEmbed(latency int64, ping time.Duration) (*disgord.Embed, *disgord.Embed) {
+func GetPingEmbed(ping time.Duration) (*disgord.Embed, *disgord.Embed) {
 
 	loadingEmbed := &disgord.Embed{
 		Title:       "Pinging...",
@@ -24,14 +24,10 @@ func GetPingEmbed(latency int64, ping time.Duration) (*disgord.Embed, *disgord.E
 		Title: "Pong!",
 		Color: 0x00ff00,
 		Fields: []*disgord.EmbedField{
+
 			{
-				Name:   "API Latency",
-				Value:  fmt.Sprintf("%d ms", latency),
-				Inline: true,
-			},
-			{
-				Name:   "Websocket Ping",
-				Value:  fmt.Sprintf("%d ms", ping),
+				Name:   "Heartbeat",
+				Value:  fmt.Sprintf("%d ms", ping.Milliseconds()),
 				Inline: true,
 			},
 		},
