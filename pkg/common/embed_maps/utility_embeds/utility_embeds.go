@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/BearTS/Tamako/pkg/structs"
@@ -12,7 +13,17 @@ import (
 )
 
 // GetPingEmbed returns an embed with the given latency and ping.
-func GetPingEmbed(latency int64, ping time.Duration) (*disgord.Embed, *disgord.Embed) {
+func GetPingEmbed(ping time.Duration) (*disgord.Embed, *disgord.Embed) {
+
+	pingResponse := []string{
+		"I-It\"s not like I wanted to say pong or anything...",
+		"Pong...",
+		"Woo! A secret command!",
+		"Ping! ...I mean **pong!**",
+		"Does anyone even use this?",
+		"At your service!",
+		"Testing, testing, 1, 2, 3!",
+	}
 
 	loadingEmbed := &disgord.Embed{
 		Title:       "Pinging...",
@@ -21,20 +32,21 @@ func GetPingEmbed(latency int64, ping time.Duration) (*disgord.Embed, *disgord.E
 	}
 
 	finalEmbed := &disgord.Embed{
-		Title: "Pong!",
-		Color: 0x00ff00,
-		Fields: []*disgord.EmbedField{
-			{
-				Name:   "API Latency",
-				Value:  fmt.Sprintf("%d ms", latency),
-				Inline: true,
-			},
-			{
-				Name:   "Websocket Ping",
-				Value:  fmt.Sprintf("%d ms", ping),
-				Inline: true,
-			},
-		},
+		Color:       0x00ff00,
+		Description: fmt.Sprintf("Latency: %d ms", ping.Milliseconds()),
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	randomNumber := rand.Intn(len(pingResponse))
+
+	// finalEmbed.Fields = append(finalEmbed.Fields, &disgord.EmbedField{
+	// 	Name:   "\u200b",
+	// 	Value:  pingResponse[randomNumber],
+	// 	Inline: true,
+	// })
+
+	finalEmbed.Footer = &disgord.EmbedFooter{
+		Text: pingResponse[randomNumber],
 	}
 
 	return loadingEmbed, finalEmbed

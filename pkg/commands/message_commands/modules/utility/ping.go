@@ -2,7 +2,6 @@ package utility
 
 import (
 	"context"
-	"time"
 
 	"github.com/BearTS/Tamako/pkg/common/embed_maps/utility_embeds"
 
@@ -33,10 +32,9 @@ func (p PingCommand) Category() string {
 }
 
 func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Message) error {
-	// Record the current time.
-	t1 := time.Now()
 
-	loadingEmbed, _ := utility_embeds.GetPingEmbed(0, 0)
+	// Create the loading embed.
+	loadingEmbed, _ := utility_embeds.GetPingEmbed(0)
 
 	// Send a message to measure the time taken to edit it.
 	editMsg, err := msg.Reply(context.Background(), s, loadingEmbed)
@@ -44,15 +42,11 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Me
 		return err
 	}
 
-	// Record the time taken to send the message and edit it.
-	t2 := time.Now()
-	latency := t2.Sub(t1).Milliseconds()
-
-	// Calculate the websocket ping.
-	ping, _ := s.AvgHeartbeatLatency()
+	// Check difference between the two times.
+	ping := editMsg.Timestamp.Time.Sub(msg.Timestamp.Time)
 
 	// Create the embed.
-	_, embed := utility_embeds.GetPingEmbed(latency, ping)
+	_, embed := utility_embeds.GetPingEmbed(ping)
 
 	// delete the original message.
 	if err = s.Channel(editMsg.ChannelID).Message(editMsg.ID).Delete(); err != nil {
@@ -60,24 +54,18 @@ func (p PingCommand) Run(ctx context.Context, s disgord.Session, msg *disgord.Me
 	}
 
 	// Edit the message with the embed.
-	editMsg, err = editMsg.Reply(context.Background(), s, embed)
+	_, err = editMsg.Reply(context.Background(), s, embed)
 
 	if err != nil {
 		return err
 	}
 
-	// Delete the message after 5 seconds.
-	go deleteMessageAfterDelay(s, editMsg, 5*time.Second)
-
-	// delete the user message after 5 seconds.
-	go deleteMessageAfterDelay(s, msg, 5*time.Second)
-
 	return nil
 }
 
-func deleteMessageAfterDelay(s disgord.Session, msg *disgord.Message, delay time.Duration) {
-	<-time.After(delay)
-	if err := s.Channel(msg.ChannelID).Message(msg.ID).Delete(); err != nil {
-		return
-	}
-}
+// func deleteMessageAfterDelay(s disgord.Session, msg *disgord.Message, delay time.Duration) {
+// 	<-time.After(delay)
+// 	if err := s.Channel(msg.ChannelID).Message(msg.ID).Delete(); err != nil {
+// 		return
+// 	}
+// }
